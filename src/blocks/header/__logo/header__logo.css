@@ -1,9 +1,0 @@
-.header__logo {
-  grid-column: 1/2
-;
-  transition: all .5s ease;
-}
-
-.header__logo:hover {
-  opacity: .6;
-}
