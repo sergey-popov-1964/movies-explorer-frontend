@@ -1,0 +1,133 @@
+.promo {
+  background-color: #202020;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template: max-content / 1fr;
+}
+
+.promo__head {
+  display: grid;
+  grid-template: auto/ 1fr 1fr;
+  padding: 18px 70px;
+}
+
+.promo__logo {
+  grid-column: 1/2;
+  transition: all .5s ease;
+}
+
+.promo__logo:hover {
+opacity: .8;
+}
+
+.promo__img {
+  width: 38px;
+  height: 38px;
+}
+
+.promo__list {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  grid-column: 2/3;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.promo__item {
+  list-style: none;
+  margin-right: 20px;
+}
+
+.promo__item:last-of-type {
+  margin-right: 0;
+}
+
+.promo__link {
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.promo__link:hover {
+  opacity: .8;
+}
+
+.promo__link_login {
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+}
+
+.promo__link_register {
+  color: #FFFFFF;
+  width: 80px;
+  height: 32px;
+  background-color: #202020;
+}
+
+.promo__main {
+  padding: 20px 40px 0 40px;
+  background-color: #272727;
+  border-radius: 10px;
+}
+
+.promo__title {
+  width: 740px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  margin: 160px auto 150px;
+  /*padding: 0;*/
+  text-align: center;
+}
+
+.promo__nav {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 30px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo__nav-item {
+  list-style: none;
+  margin-right: 10px;
+}
+
+.promo__nav-item:last-of-type {
+  margin-right: 0;
+}
+
+.promo__button {
+  width: 96px;
+  height: 36px;
+  outline: none;
+  border: none;
+  background-color: #303030;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.promo__button:hover {
+  opacity: .8;
+}
+
+
+

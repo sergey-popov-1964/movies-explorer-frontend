@@ -1,10 +1,11 @@
 import React from "react";
 import logoDiploma from "../../images/diplom_logo.svg";
+import "../App/App.css"
 import {Link} from "react-router-dom";
 
 function Header(props) {
   return (
-    <header className="header page__header">
+    <header className="header block">
       <a href="#" target="_self" className="header__logo">
         <img src={logoDiploma} alt="Логотип" className="header__img"/>
       </a>
