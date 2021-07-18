@@ -7,3 +7,22 @@
   min-height: 100vh;
   grid-template: auto /1fr minmax(auto, 1280px) 1fr;
 }
+
+.main__block {
+  display: grid;
+  grid-template: auto / 1fr;
+}
+
+.main__block-head {
+  grid-row: 1/2;
+  margin: 0;
+  padding: 0 0 23px;
+  border-bottom: solid 1px #DADADA;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+}
+
+

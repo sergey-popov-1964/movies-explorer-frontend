@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Main.css';
 import './AboutProject.css';
 import '../../App/App.css';
 
@@ -6,8 +7,8 @@ function AboutProject() {
 
 
   return (
-    <div className="block about">
-      <h2 className="about__title">О проекте</h2>
+    <div id="about" className="block main__block about">
+      <h2 className="main__block-head">О проекте</h2>
 
       <ul className="about__list about__stages">
         <li className="about__item">
@@ -22,7 +23,7 @@ function AboutProject() {
 
       <ul className="about__list about__chart">
         <li className="about__chart-item">
-          <h3 className="about__chart-week about__chart-week_back">1 неделя</h3>
+          <h3 className="about__chart-week about__chart-week_green">1 неделя</h3>
           <p className="about__chart-text">Back-end</p>
         </li>
         <li className="about__item">

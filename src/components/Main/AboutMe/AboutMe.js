@@ -1,15 +1,19 @@
 import React from 'react';
 import './AboutMe.css';
 import '../../App/App.css';
+import '../Main.css'
 
 function AboutMe() {
 
-
   return (
-    <div className="block">
-      <h1>AboutMe</h1>
+    <div id="student" className="block main__block about-me">
+      <h2 className="main__block-head">Студент</h2>
+
+
+
     </div>
   )
+
 }
 
 export default AboutMe;

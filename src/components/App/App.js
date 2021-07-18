@@ -8,6 +8,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Notfound from "../Notfound/Notfound";
+import Techs from "../Movies/Techs/Techs";
 
 function App() {
 
@@ -38,6 +39,10 @@ function App() {
 
         <Route exact path="/">
           <Main/>
+        </Route>
+
+        <Route exact path="/#section-1">
+          <Techs/>
         </Route>
 
         <Route path="*">
