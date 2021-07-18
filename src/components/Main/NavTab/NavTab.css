@@ -1,0 +1,37 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 30px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__item {
+  list-style: none;
+  margin-right: 10px;
+}
+
+.nav__item:last-of-type {
+  margin-right: 0;
+}
+
+.nav__button {
+  width: 96px;
+  height: 36px;
+  outline: none;
+  border: none;
+  background-color: #303030;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.nav__button:hover {
+  opacity: .8;
+}

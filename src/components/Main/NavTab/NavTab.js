@@ -1,14 +1,29 @@
 import React from 'react';
 import './NavTab.css';
-import '../../App/App.css';
 
 function NavTab() {
 
-
   return (
-    <div className="block">
-      <h1>NavTab</h1>
-    </div>
+    <ul className="nav">
+      <li className="nav__item">
+        <button type="button"
+                className="nav__button">
+          О проекте
+        </button>
+      </li>
+      <li className="nav__item">
+        <button type="button"
+                className="nav__button">
+          Технологии
+        </button>
+      </li>
+      <li className="nav__item">
+        <button type="button"
+                className="nav__button">
+          Студент
+        </button>
+      </li>
+    </ul>
   )
 }
 
