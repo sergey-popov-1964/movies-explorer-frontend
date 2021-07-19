@@ -7,27 +7,28 @@ function NavTab() {
   return (
     <ul className="nav">
       <li className="nav__item">
-        <a href="#about">О проекте</a>
-        {/*<button type="button"*/}
-        {/*        className="nav__button">*/}
-        {/*  О проекте*/}
-        {/*</button>*/}
+        <a href="#about">
+          <button type="button"
+                  className="nav__button">
+            О проекте
+          </button>
+        </a>
       </li>
       <li className="nav__item">
-        {/*<Link to="/#tc">111111</Link>*/}
-        <a href="#techs">Технологии</a>
-        {/*<Link to="/#section-1">Технологии</Link>*/}
-        {/*<button type="button"*/}
-        {/*        className="nav__button">*/}
-        {/*  Технологии*/}
-        {/*</button>*/}
+        <a href="#techs">
+          <button type="button"
+                  className="nav__button">
+            Технологии
+          </button>
+        </a>
       </li>
       <li className="nav__item">
-        <a href="#student">Студент</a>
-        {/*<button type="button"*/}
-        {/*        className="nav__button">*/}
-        {/*  Студент*/}
-        {/*</button>*/}
+        <a href="#student">
+          <button type="button"
+                  className="nav__button">
+            Студент
+          </button>
+        </a>
       </li>
     </ul>
   )
