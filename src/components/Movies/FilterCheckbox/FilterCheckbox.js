@@ -6,7 +6,7 @@ function FilterCheckbox() {
 
 
   return (
-    <div className="block">
+    <div >
       <h1>FilterCheckbox</h1>
     </div>
   )

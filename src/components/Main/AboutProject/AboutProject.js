@@ -7,7 +7,7 @@ function AboutProject() {
 
 
   return (
-    <div id="about" className="block main__block about">
+    <div id="about" className="main__block about">
       <h2 className="main__block-head">О проекте</h2>
 
       <ul className="about__list about__stages">

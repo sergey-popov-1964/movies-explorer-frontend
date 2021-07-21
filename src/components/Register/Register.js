@@ -1,16 +1,21 @@
 import React from "react";
+import '../App/App.css';
 import './Register.css';
 import logoDiploma from "../../images/diplom_logo.svg";
 import {Link} from "react-router-dom";
 
 function Register() {
   return (
-    <div className="block register">
+    <div className="page">
+    <div className="block">
       <form action="#"
         // onSubmit={handleSubmit}
             className="register__form"
             name='register' noValidate>
-        <img src={logoDiploma} className="register__logo" alt=""/>
+        <Link to="/">
+          <img src={logoDiploma} className="register__logo" alt=""/>
+        </Link>
+        {/*<img src={logoDiploma} className="register__logo" alt=""/>*/}
         <h2 className='register__title'>Добро пожаловать!</h2>
         <p className="register__name">Имя</p>
         <input type="text"
@@ -50,6 +55,7 @@ function Register() {
           <Link className='register__link' to='/signin'>Войти</Link>
         </p>
       </form>
+    </div>
     </div>
   )
 }

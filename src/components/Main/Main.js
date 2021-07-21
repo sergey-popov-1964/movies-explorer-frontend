@@ -24,14 +24,21 @@ function Main() {
   console.log(scrollWidth)
 
   return (
-    <div className="main">
-      <Header/>
-      <Promo/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
-      <Portfolio/>
-      <Footer/>
+    <div className="page">
+      <div className="block">
+        <Header isFilms={false}
+                isLogin = {true}
+                isAccount = {false}
+        />
+
+          <Promo/>
+          <AboutProject/>
+          <Techs/>
+          <AboutMe/>
+          <Portfolio/>
+
+        <Footer/>
+      </div>
     </div>
   )
 }

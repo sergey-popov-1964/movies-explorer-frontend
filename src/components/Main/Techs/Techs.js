@@ -6,7 +6,7 @@ function Techs() {
 
 
     return (
-      <div id="techs" className="block main__block techs">
+      <div id="techs" className="main__block techs">
         <h2 className="main__block-head">Технологии</h2>
 
         <div>

@@ -7,7 +7,7 @@ function Portfolio() {
 
 
   return (
-    <div id="techs" className="block main__block portfolio">
+    <div id="techs" className="main__block portfolio">
       <ul className="portfolio__list">
         <li className="portfolio__title">
           Портфолио

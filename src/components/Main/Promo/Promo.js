@@ -8,7 +8,7 @@ import NavTab from "../NavTab/NavTab";
 function Promo() {
 
   return (
-    <div className="block promo">
+    <div className="promo">
       {/*<div className="promo__head">*/}
       {/*  <img src={logoDiploma} alt="Логотип" className="promo__logo promo__img"/>*/}
       {/*  <ul className="promo__list">*/}

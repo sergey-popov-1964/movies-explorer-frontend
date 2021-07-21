@@ -7,7 +7,7 @@ import myPhoto from "../../../images/my_photo.jpg";
 function AboutMe() {
 
   return (
-    <div id="student" className="block main__block about-me">
+    <div id="student" className="main__block about-me">
       <h2 className="main__block-head">Студент</h2>
       <div className="about__me-list">
         <div className="about__me-content">
