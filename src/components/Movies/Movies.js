@@ -4,18 +4,19 @@ import '../App/App.css';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
+import SearchForm from "./SearchForm/SearchForm";
 
 function Movies() {
 
   return (
     <div className="page">
       <div className="block">
-        <Header isFilms = {true}
-                isLogin = {false}
-                isAccount = {true}
+        <Header isFilms={true}
+                isLogin={false}
+                isAccount={true}
         />
-
-        <FilterCheckbox/>
+        <SearchForm/>
+        {/*<FilterCheckbox/>*/}
 
         <Footer/>
       </div>

@@ -1,0 +1,170 @@
+.search {
+  margin: 0;
+  padding: 70px 70px 48px 70px;
+}
+
+
+.search__form {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #424242;
+}
+
+.search__input {
+  font-family: 'Inter', 'Arial', sans-serif;
+  margin: 0;
+  width: 100%;
+  padding: 5px 0 10px;
+  border: none;
+  outline: none;
+  background-color: #202020;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+  text-align: center;
+  color: #8B8B8B;
+}
+
+.search__icon {
+  margin: 0 10px 0 0;
+  padding: 0;
+  width: 34px;
+  height: 34px;
+}
+
+.search__button {
+  margin: 0 0 0 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  outline: none;
+  background:   #202020 url("../../../images/find.svg") no-repeat center center / contain;
+  object-fit: cover;
+  color: #FFFFFF;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.search__check-txt {
+  margin: 0 0 0 12px;
+  padding: 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+
+
+
+
+
+
+
+.form__item_el_extra-options {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.form__item {
+  border: 0;
+  width: 50px;
+  height: 20px;
+  /*box-sizing: border-box;*/
+  border-bottom: 1px solid #bcbcc4;
+  background-image: url(https://code.s3.yandex.net/web-code/tick.svg);
+  /*background-color: transparent;*/
+  /*margin-top: 5px;*/
+  /*font-size: 14px;*/
+  /*font-family: inherit;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*.form__item_el_extra-options:disabled + .form__pseudo-item_type_checkbox {*/
+/*  background: url("../../../images/find.svg") no-repeat center center / contain;*/
+/*  !*border: 1px solid grey;*!*/
+/*}*/
+
+/*form__item_el_extra-options:disabled:checked + .form__pseudo-item_type_checkbox {*/
+/*  background: url("../../../images/check-off.svg") no-repeat center center / contain;*/
+/*}*/
+
+.form__item_el_extra-options:checked + .form__pseudo-item_type_checkbox {
+  background: url("../../../images/check-on.svg") no-repeat center center / contain;
+}
+
+/*.form__item_el_extra-options:disabled:checked + .form__pseudo-item_type_checkbox {*/
+/*  background: url("../../../images/check-off.svg") no-repeat center center / contain;*/
+/*}*/
+
+.form__item_el_extra-options:focus + .form__pseudo-item_type_checkbox {
+  /*box-shadow: 0 0 5px #fff6c5;*/
+}
+
+.form__item_el_extra-options:disabled:checked + .form__pseudo-item_type_checkbox {
+  background-image: url(https://code.s3.yandex.net/web-code/tick.svg);
+}
+
+/*.form__item_el_extra-options:checked + .form__pseudo-item_type_checkbox {*/
+/*  background: url("../../../images/check-on.svg") no-repeat center center / contain;*/
+/*}*/
+
+.form__label {
+  grid-column: 2/3;
+  display: inline-block;
+  /*margin: 35px auto 0 487px;*/
+  font-size: 20px;
+  line-height: 30px;
+  /*vertical-align: middle;*/
+}
+
+/*.form__label_direction_right {*/
+/*  display: inline;*/
+/*  font-size: 14px;*/
+/*  line-height: 30px;*/
+/*  margin-left: 10px;*/
+/*}*/
+
+.form__pseudo-item {
+  display: inline-block;
+  /* элемент span теперь сможет принимать определённую ширину и высоту */
+  vertical-align: middle;
+  /* элемент и текст будут правильно выровнены по вертикали. Работает в паре с inline-block */
+  width: 36px;
+  height: 20px;
+  background: url("../../../images/check-off.svg") no-repeat center center / contain;
+}
+
+
+.form__label-text {
+  padding: 0;
+  margin: 0 0 0 12px;
+}
+
+
+
+.check {
+display: grid;
+  grid-template: max-content / 1fr max-content 1fr;
+}
