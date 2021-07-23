@@ -1,0 +1,51 @@
+.check__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.check__input:disabled + .check__pseudo-item_type_checkbox {
+  background: url("../../../images/check-off.svg") no-repeat center center / contain;
+}
+
+.check__input:checked + .check__pseudo-item_type_checkbox {
+  background: url("../../../images/check-on.svg") no-repeat center center / contain;
+}
+
+.check__input:focus + .check__pseudo-item_type_checkbox {
+}
+
+.check__input:disabled:checked + .check__pseudo-item_type_checkbox {
+  background-image: url("../../../images/check-off.svg");
+}
+
+.check__label {
+  grid-column: 2/3;
+  display: inline-block;
+}
+
+.check__pseudo-item {
+  display: inline-block;
+  vertical-align: middle;
+  width: 36px;
+  height: 20px;
+  background: url("../../../images/check-off.svg") no-repeat center center / contain;
+}
+
+.check__label-text {
+  padding: 0;
+  margin: 0 0 0 12px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+.check {
+  display: grid;
+  grid-template: max-content / 1fr max-content 1fr;
+  padding: 0;
+  margin: 0;
+}

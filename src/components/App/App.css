@@ -16,8 +16,19 @@
   font-family: 'Inter', 'Arial', sans-serif;
   display: grid;
   grid-template: max-content auto max-content /1fr minmax(auto, 1280px) 1fr;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+}
+
+.movies__search {
+  margin: 0;
+  padding: 64px 70px 40px 70px;
+}
+
+.movies__check {
+  margin: 0;
+  padding: 0 70px 49px 70px;
+}
+
+.movies__list {
+  margin: 0;
+  padding: 70px 0 60px;
 }

@@ -5,9 +5,9 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import SearchForm from "./SearchForm/SearchForm";
+import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
-
   return (
     <div className="page">
       <div className="block">
@@ -16,7 +16,10 @@ function Movies() {
                 isAccount={true}
         />
         <SearchForm/>
-        {/*<FilterCheckbox/>*/}
+        <FilterCheckbox/>
+        <MoviesCardList/>
+
+        <button type="button" className="movies__button">Еще</button>
 
         <Footer/>
       </div>

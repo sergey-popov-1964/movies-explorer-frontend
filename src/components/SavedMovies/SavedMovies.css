@@ -1,0 +1,4 @@
+.saved-movies {
+  grid-area: main;
+  /*min-height: 100vh;*/
+}

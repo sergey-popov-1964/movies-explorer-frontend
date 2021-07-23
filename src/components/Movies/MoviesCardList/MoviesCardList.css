@@ -1,0 +1,14 @@
+.elements {
+  margin: 0;
+  padding: 0;
+}
+
+.elements__list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 37px 24px;
+  grid-template: auto /repeat(auto-fill, 364px);
+  justify-content: center;
+}
