@@ -6,14 +6,14 @@ function Techs() {
 
 
     return (
-      <div id="techs" className="main__block techs">
+      <div id="techs" className="techs">
         <h2 className="main__block-head">Технологии</h2>
 
         <div>
             <h1 className="techs__title">7 технологий</h1>
             <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
 
-      </div>
+      </div >
 
         <ul className="techs__list">
           <li className="techs__item">

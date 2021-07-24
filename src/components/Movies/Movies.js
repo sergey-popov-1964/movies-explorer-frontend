@@ -19,8 +19,9 @@ function Movies() {
         <FilterCheckbox/>
         <MoviesCardList/>
 
+        <div className="movies__further">
         <button type="button" className="movies__button">Еще</button>
-
+        </div>
         <Footer/>
       </div>
     </div>

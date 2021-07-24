@@ -33,7 +33,7 @@ export const catalog = [
     "_id": "60eac4341e70700ee41a5553",
     "country": "США",
     "director": "Джеймс Кэмерон",
-    "duration": 162,
+    "duration": 120,
     "year": "2009",
     "description": "Это новый мир",
     "image": "https://b1.filmpro.ru/c/455897.700xp.jpg",

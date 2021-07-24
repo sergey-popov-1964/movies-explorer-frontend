@@ -2,8 +2,6 @@ import React from "react";
 import './Profile.css';
 import '../App/App.css';
 import Header from "../Header/Header";
-import logoDiploma from "../../images/diplom_logo.svg";
-import {Link} from "react-router-dom";
 
 function Profile() {
   return (

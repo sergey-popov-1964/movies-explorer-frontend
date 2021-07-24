@@ -6,7 +6,6 @@
 
 .image {
   background: #222222;
-  /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);*/
   border-radius: 6px 6px 0 0;
   display: block;
   width: 100%;
@@ -17,7 +16,6 @@
 
 .description {
   background: #222222;
-  /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);*/
   border-radius: 0 0 6px 6px;
   display: grid;
   grid-template: auto / 1fr max-content;
@@ -46,4 +44,27 @@
   font-size: 11px;
   line-height: 13px;
   color: #8B8B8B;
+}
+
+.content__heart {
+  margin: 0;
+  padding: 19px 24px 0 0;
+}
+
+@media screen and (max-width: 1279px) {
+  .element {
+    grid-template: 190px 72px / minmax(339px, 1fr);
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .element {
+    grid-template: 203px 78px / minmax(364px, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .element {
+    grid-template: 190px 72px / minmax(339px, 1fr);
+  }
 }

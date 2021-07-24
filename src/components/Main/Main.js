@@ -30,7 +30,6 @@ function Main() {
                 isLogin = {true}
                 isAccount = {false}
         />
-
           <Promo/>
           <AboutProject/>
           <Techs/>
