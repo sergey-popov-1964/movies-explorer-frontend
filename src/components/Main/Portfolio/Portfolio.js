@@ -5,7 +5,6 @@ import arrow from "../../../images/arrow.svg";
 
 function Portfolio() {
 
-
   return (
     <div id="techs" className="main__block portfolio">
       <ul className="portfolio__list">

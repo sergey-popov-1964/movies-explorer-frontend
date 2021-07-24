@@ -118,3 +118,15 @@
 .header__link_active {
   border-bottom: solid 1px #FFFFFF;
 }
+
+  @media screen and (max-width: 1279px) {
+    .header {
+      padding: 18px 30px;
+    }
+  }
+
+@media screen and (max-width: 76px) {
+  .header {
+    padding: 18px 14px;
+  }
+}

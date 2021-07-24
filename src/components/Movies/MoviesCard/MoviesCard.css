@@ -57,14 +57,14 @@
   }
 }
 
-@media screen and (max-width: 1220px) {
-  .element {
-    grid-template: 203px 78px / minmax(364px, 1fr);
-  }
-}
+/*@media screen and (max-width: 1220px) {*/
+/*  .element {*/
+/*    grid-template: 203px 78px / minmax(364px, 1fr);*/
+/*  }*/
+/*}*/
 
-@media screen and (max-width: 900px) {
-  .element {
-    grid-template: 190px 72px / minmax(339px, 1fr);
-  }
-}
+/*@media screen and (max-width: 900px) {*/
+/*  .element {*/
+/*    grid-template: 190px 72px / minmax(339px, 1fr);*/
+/*  }*/
+/*}*/

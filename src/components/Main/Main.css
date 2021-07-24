@@ -33,3 +33,11 @@
   margin: 0;
   padding: 18px 70px;
 }
+
+@media screen and (max-width: 1279px) {
+  .main__block-head {
+    padding: 0 0 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

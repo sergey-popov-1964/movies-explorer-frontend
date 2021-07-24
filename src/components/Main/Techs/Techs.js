@@ -12,7 +12,6 @@ function Techs() {
         <div>
             <h1 className="techs__title">7 технологий</h1>
             <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-
       </div >
 
         <ul className="techs__list">

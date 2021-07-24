@@ -18,7 +18,7 @@
   margin: 26px auto 0;
   padding: 0;
   width: 460px;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   text-align: center;
@@ -60,4 +60,26 @@
   text-align: center;
   letter-spacing: -0.04em;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 1279px) {
+  .techs {
+    padding: 90px 50px;
+  }
+
+  .techs__text {
+    margin: 22px auto 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .techs__item {
+    width: 84px;
+    height: 57px;
+  }
+
+  .techs__item-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
