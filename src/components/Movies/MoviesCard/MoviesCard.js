@@ -5,8 +5,6 @@ import heartRed from "../../../images/heart-red.svg";
 
 function MoviesCard(card) {
 
-  console.log(card)
-
   const  lengthHour = (card.card.duration - card.card.duration%60) / 60
   const  lengthMinute = card.card.duration%60
   return (

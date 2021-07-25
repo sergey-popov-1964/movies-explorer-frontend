@@ -26,9 +26,11 @@ function Header(props) {
           <Link className='header__link header__link_login' to="/signin">Войти</Link>
         </li>
       </ul>
-      <div className={props.isAccount ? "header__account" : "header__account_nonactive"}>
+      <div className={props.isAccount ? "header__account " : "header__account_nonactive"}>
         <Link className='header__link header__link_account' to="/profile">Аккаунт</Link>
       </div>
+      <button type="button" className= {props.isFilms || props.isAccount ? "burger__button" : "burger__button_nonactive header__film-list_nonactive"}></button>
+
     </header>
   )
 }

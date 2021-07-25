@@ -14,8 +14,6 @@
 }
 
 
-
-
 @media screen and (max-width: 1279px) {
   .elements__list {
     gap: 30px;
@@ -23,16 +21,10 @@
   }
 }
 
-/*@media screen and (max-width: 1220px) {*/
-/*  .elements__list {*/
-/*    gap: 37px 24px;*/
-/*    grid-template: auto /repeat(auto-fill, 364px);*/
-/*  }*/
-/*}*/
+@media screen and (max-width: 767px) {
+  .elements__list {
+    gap: 30px;
+    grid-template: auto /repeat(auto-fill, 300px);
+  }
+}
 
-/*@media screen and (max-width: 900px) {*/
-/*  .elements__list {*/
-/*    gap: 30px;*/
-/*    grid-template: auto /repeat(auto-fill, 339px);*/
-/*  }*/
-/*}*/

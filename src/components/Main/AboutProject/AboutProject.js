@@ -9,7 +9,7 @@ function AboutProject() {
     <div id="about" className="main__block about">
       <h2 className="main__block-head">О проекте</h2>
 
-      <ul className="about__list about__stages">
+      <ul className="about__stages">
         <li className="about__item">
           <h3 className="about__subtitle">Дипломный проект включал 5 этапов</h3>
           <p className="about__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>

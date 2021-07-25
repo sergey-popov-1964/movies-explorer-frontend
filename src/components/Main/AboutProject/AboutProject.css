@@ -5,6 +5,10 @@
 
 .about__stages {
   grid-row: 2/3;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template: max-content / 1fr 1fr;
 }
 
 .about__list {
@@ -103,34 +107,47 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
   .about {
     padding: 70px 18px;
   }
 
-  .about__list {
-    margin: 0;
-    padding: 0;
-    display: grid;
+  .about__stages {
     grid-template: max-content / 1fr;
   }
 
   .about__subtitle {
+    margin: 60px auto 0;
     max-width: 284px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   .about__text {
-    margin: 22px 0 0;
-    max-width: 319px;
-    font-size: 12px;
-    line-height: 18px;
+    margin: 16px auto 0;
+    max-width: 284px;
+    font-size: 11px;
+    line-height: 16px;
   }
 
   .about__chart {
-    margin: 93px 0 0;
+    margin: 60px auto 0;
+    max-width: 284px;
+  }
+
+  .about__chart-week {
+    padding: 11px 0;
+    font-size: 11px;
+    line-height: 13px;
   }
 
   .about__chart-week_green{
-    width: 140px;
+    width: 100px;
+  }
+
+  .about__chart-text {
+    margin: 10px 0;
+    font-size: 11px;
+    line-height: 13px;
   }
 }

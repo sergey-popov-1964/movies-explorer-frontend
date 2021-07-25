@@ -25,10 +25,42 @@
 
 .movies__check {
   margin: 0;
-  padding: 0 70px 0 70px;
+  padding: 0 70px;
 }
 
 .movies__list {
   margin: 119px 0 0 0;
   padding: 0 70px;
+}
+
+@media screen and (max-width: 1279px) {
+  .movies__search {
+    padding: 86px 30px 30px;
+  }
+
+  .movies__check {
+    margin: 0;
+    padding: 0 30px;
+  }
+
+  .movies__list {
+    margin: 131px 0 0 0;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movies__search {
+    padding: 90px 14px 42px;
+  }
+
+  .movies__check {
+    margin: 0;
+    padding: 0 14px;
+  }
+
+  .movies__list {
+    margin: 90px 0 0 0;
+    padding: 0 10px;
+  }
 }

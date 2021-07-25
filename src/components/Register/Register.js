@@ -12,8 +12,8 @@ function Register() {
         // onSubmit={handleSubmit}
             className="register__form"
             name='register' noValidate>
-        <Link to="/">
-          <img src={logoDiploma} className="register__logo" alt=""/>
+        <Link to="/" className="register__logo">
+          <img src={logoDiploma}  alt=""/>
         </Link>
         {/*<img src={logoDiploma} className="register__logo" alt=""/>*/}
         <h2 className='register__title'>Добро пожаловать!</h2>

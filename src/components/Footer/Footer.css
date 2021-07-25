@@ -67,3 +67,41 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .footer {
+    padding: 0 10px;
+  }
+
+  .footer__text {
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+  }
+
+  .footer__subline {
+    grid-row: 2/3;
+    display: grid;
+    grid-template: auto/ 1fr;
+    padding: 30px 0 10px;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    justify-content: flex-end;
+  }
+
+  .footer__item {
+    margin: 0 0 12px 0;
+  }
+
+  .footer__item:last-of-type {
+    margin: 0 0 30px 0;
+  }
+
+}
+

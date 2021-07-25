@@ -12,8 +12,8 @@ function Login() {
           // onSubmit={handleSubmit}
               className="login__form"
               name='register' noValidate>
-          <Link to="/">
-            <img src={logoDiploma} className="login__logo" alt=""/>
+          <Link to="/" className="login__logo">
+            <img src={logoDiploma} alt=""/>
           </Link>
           {/*<img src={logoDiploma} className="login__logo" alt=""/>*/}
           <h2 className='login__title'>Рады видеть!</h2>
