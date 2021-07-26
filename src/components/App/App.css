@@ -30,7 +30,9 @@
 
 .movies__list {
   margin: 119px 0 0 0;
-  padding: 0 70px;
+  /*padding: 0 70px;*/
+  display: grid;
+  grid-template: auto / 1fr max-content 1fr;
 }
 
 @media screen and (max-width: 1279px) {

@@ -33,11 +33,10 @@ function AboutMe() {
             </a>
           </li>
         </ul>
-        <img src={myPhoto} className="about__me-photo" alt=""/>
+        <img src={myPhoto} className="about__me-photo" alt="Фото студента"/>
       </div>
     </div>
   )
-
 }
 
 export default AboutMe;

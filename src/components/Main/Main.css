@@ -1,22 +1,13 @@
 .main {
-
-  /*box-sizing: border-box;*/
-  /*margin: 0 auto;*/
-  /*font-family: 'Inter', 'Arial', sans-serif;*/
-  /*!*padding: 45px 0 60px;*!*/
-  /*display: grid;*/
-  /*min-height: 100vh;*/
-  /*grid-template: auto /1fr minmax(auto, 1280px) 1fr;*/
-}
-
-.main{
   margin: 0;
   padding: 18px 70px 79px;
 }
+
 .main__about {
   margin: 0 38px 0 0;
   padding: 0;
 }
+
 .main__block-head {
   grid-row: 1/2;
   margin: 0;
@@ -42,7 +33,3 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-
-
-}

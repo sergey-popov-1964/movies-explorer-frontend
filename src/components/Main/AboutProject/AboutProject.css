@@ -67,11 +67,12 @@
   background-color: #303030;
 }
 
-.about__chart-week_green{
+.about__chart-week_green {
   background-color: #3DDC84;
   width: 228px;
   color: #000000;
 }
+
 .about__chart-text {
   margin: 14px 0;
   padding: 0;
@@ -102,7 +103,7 @@
     margin: 89px 0 0;
   }
 
-  .about__chart-week_green{
+  .about__chart-week_green {
     width: 140px;
   }
 }
@@ -141,7 +142,7 @@
     line-height: 13px;
   }
 
-  .about__chart-week_green{
+  .about__chart-week_green {
     width: 100px;
   }
 

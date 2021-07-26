@@ -47,15 +47,16 @@
   color: #8B8B8B;
 }
 
-  .content__heart {
-    margin: 0;
-    padding: 19px 24px 0 0;
-  }
+.content__heart {
+  margin: 0;
+  padding: 19px 24px 0 0;
+}
 
 @media screen and (max-width: 1279px) {
   .element {
     grid-template: 190px 72px / minmax(339px, 1fr);
   }
+
   .content {
     padding: 14px;
   }
@@ -66,8 +67,9 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1150px) {
   .element {
     grid-template: 168px 69px / minmax(300px, 1fr);
   }
 }
+

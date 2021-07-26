@@ -3,7 +3,6 @@ import './SearchForm.css';
 import '../../App/App.css';
 import '../Movies.css';
 import magnifier from "../../../images/magnifier.svg";
-import find from "../../../images/find.svg";
 
 function SearchForm() {
 
@@ -11,7 +10,7 @@ function SearchForm() {
     <div className="block movies__search">
       <form action="#">
         <div className="search__form">
-          <img src={magnifier} className="search__icon" alt=""/>
+          <img src={magnifier} className="search__icon" alt="Иконка лупа"/>
           <input type="text"
                  className="search__input"
                  name="film"
@@ -29,6 +28,5 @@ function SearchForm() {
     </div>
   )
 }
-
 
 export default SearchForm;

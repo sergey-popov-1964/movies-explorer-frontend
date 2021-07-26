@@ -7,16 +7,20 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 
 function SavedMovies() {
+
   return (
     <div className="page">
       <div className="block">
         <Header isFilms={true}
                 isLogin={false}
                 isAccount={true}
+                currentSection={"saved-movies"}
         />
         <SearchForm/>
         <FilterCheckbox/>
-        <MoviesCardList/>
+        <MoviesCardList
+          isNextButton={false}
+        />
         <Footer/>
       </div>
     </div>

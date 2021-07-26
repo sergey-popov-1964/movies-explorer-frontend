@@ -48,11 +48,11 @@
   margin-bottom: 0;
 }
 
-  .portfolio__link {
-    display: block;
-    width: 27px;
-    height: 27px;
-  }
+.portfolio__link {
+  display: block;
+  width: 27px;
+  height: 27px;
+}
 
 
 @media screen and (max-width: 1279px) {
@@ -96,6 +96,7 @@
   .portfolio {
     grid-template: auto / 1fr 250px 1fr;
   }
+
   .portfolio__text {
     max-width: 200px;
   }

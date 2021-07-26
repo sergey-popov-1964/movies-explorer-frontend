@@ -11,30 +11,18 @@ import Header from "../Header/Header";
 
 function Main() {
 
-  let scrollHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-  );
-
-  console.log(scrollHeight)
-
-  let scrollWidth = document.documentElement.clientWidth;
-
-  console.log(scrollWidth)
-
   return (
     <div className="page">
       <div className="block">
         <Header isFilms={false}
-                isLogin = {true}
-                isAccount = {false}
+                isLogin={true}
+                isAccount={false}
         />
-          <Promo/>
-          <AboutProject/>
-          <Techs/>
-          <AboutMe/>
-          <Portfolio/>
+        <Promo/>
+        <AboutProject/>
+        <Techs/>
+        <AboutMe/>
+        <Portfolio/>
         <Footer/>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -10,7 +10,6 @@ import Profile from "../Profile/Profile";
 import Notfound from "../Notfound/Notfound";
 
 function App() {
-
 
   return (
     <div className="root">
