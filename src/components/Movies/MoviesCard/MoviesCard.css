@@ -48,8 +48,27 @@
 }
 
 .content__heart {
+  display: block;
   margin: 0;
   padding: 19px 24px 0 0;
+  cursor: pointer;
+}
+
+.content__heart_nonactive {
+  display: none;
+}
+
+.content__close {
+  display: block;
+  margin: 0;
+  width: 12px;
+  height: 12px;
+  padding: 19px 24px 0 0;
+  cursor: pointer;
+}
+
+.content__close_nonactive {
+  display: none;
 }
 
 @media screen and (max-width: 1279px) {

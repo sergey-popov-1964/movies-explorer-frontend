@@ -20,6 +20,7 @@ function SavedMovies() {
         <FilterCheckbox/>
         <MoviesCardList
           isNextButton={false}
+          isTypeList={'saved'}
         />
         <Footer/>
       </div>

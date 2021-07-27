@@ -8,7 +8,7 @@ function Menu(props) {
     <div className={props.IsOpen ? "menu__overlay menu__overlay_active" : "menu__overlay"}>
       <form action="#"
             className={props.IsOpen ? "menu menu_active" : "menu"}>
-        <div className = "menu__close">
+        <div className="menu__close">
           <button onClick={props.closeMenu}
                   className="menu__button">
           </button>
@@ -26,11 +26,9 @@ function Menu(props) {
                      className={props.currentSection === "saved-movies" ? "menu__link menu__link_active" : "menu__link"}>Сохранённые
               фильмы</NavLink>
           </li>
-          <li className="menu__item">
-            <NavLink to="/profile"
-                     className={props.currentSection === "account" ? "menu__link menu__link_active" : "menu__link"}>Аккаунт</NavLink>
-          </li>
         </ul>
+        <NavLink to="/profile"
+                 className='menu__link_account'>Аккаунт</NavLink>
       </form>
     </div>
   )

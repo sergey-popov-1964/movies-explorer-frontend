@@ -21,6 +21,7 @@ function Movies() {
         <FilterCheckbox/>
         <MoviesCardList
           isNextButton={true}
+          isTypeList={'movies'}
         />
         <Footer/>
       </div>

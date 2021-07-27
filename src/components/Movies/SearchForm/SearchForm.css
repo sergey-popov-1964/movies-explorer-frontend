@@ -10,7 +10,6 @@
   width: 100%;
   padding: 5px 0 10px;
   border: none;
-  outline: none;
   background-color: #202020;
   font-weight: 500;
   font-size: 28px;
@@ -32,7 +31,6 @@
   width: 34px;
   height: 34px;
   border: none;
-  outline: none;
   background: #202020 url("../../../images/find.svg") no-repeat center center / contain;
   object-fit: cover;
   color: #FFFFFF;

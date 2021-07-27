@@ -12,7 +12,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "1",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": true,
   },
   {
     "_id": "60eac4341e70700ee41a5552",
@@ -27,7 +28,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "2",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5553",
@@ -42,7 +44,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "3",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5554",
@@ -57,7 +60,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "4",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": true,
   },
 
   {
@@ -73,7 +77,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "5",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5556",
@@ -88,7 +93,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "6",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5557",
@@ -103,7 +109,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "7",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5558",
@@ -118,7 +125,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "8",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": true,
   },
   {
     "_id": "60eac4341e70700ee41a5559",
@@ -133,7 +141,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "9",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5560",
@@ -148,7 +157,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "10",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
   {
     "_id": "60eac4341e70700ee41a5561",
@@ -163,7 +173,8 @@ export const catalog = [
     "nameEN": "Avatar",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/4/4b/Avatar-2009.jpg",
     "movieId": "11",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": true,
   },
   {
     "_id": "60eac4341e70700ee41a5562",
@@ -178,7 +189,8 @@ export const catalog = [
     "nameEN": "The Hobbit",
     "thumbnail": "https://upload.wikimedia.org/wikipedia/ru/3/32/The_Hobbit._An_Unexpected_Journey.jpg",
     "movieId": "12",
-    "owner": "60ea6a424eb8de324419b970"
+    "owner": "60ea6a424eb8de324419b970",
+    "saved": false,
   },
 
 ]
