@@ -1,0 +1,35 @@
+.main {
+  margin: 0;
+  padding: 18px 70px 79px;
+}
+
+.main__about {
+  margin: 0 38px 0 0;
+  padding: 0;
+}
+
+.main__block-head {
+  grid-row: 1/2;
+  margin: 0;
+  padding: 0 0 23px;
+  border-bottom: solid 1px #DADADA;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+}
+
+.main__header {
+  margin: 0;
+  padding: 18px 70px;
+}
+
+@media screen and (max-width: 1279px) {
+  .main__block-head {
+    padding: 0 0 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+

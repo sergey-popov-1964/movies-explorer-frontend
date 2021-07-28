@@ -1,0 +1,182 @@
+.header {
+  margin: 0;
+  padding: 18px 70px;
+  display: grid;
+  grid-template: auto/ max-content 1fr max-content;
+}
+
+.header__logo {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  transition: all .5s ease;
+}
+
+.header__logo:hover {
+  opacity: .8;
+}
+
+.header__img {
+  width: 38px;
+  height: 38px;
+}
+
+.header__film-list {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header__film-list_nonactive {
+  display: none;
+}
+
+.header__film-item {
+  list-style: none;
+  margin-right: 16px;
+}
+
+.header__film-item:last-of-type {
+  margin-right: 0;
+}
+
+.header__login-list {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__login-list_nonactive {
+  display: none;
+}
+
+.header__login-item {
+  list-style: none;
+  margin-right: 20px;
+}
+
+.header__login-item:last-of-type {
+  margin-right: 0;
+}
+
+.header__link_active {
+  color: #3DDC84;
+}
+
+.header__link {
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.header__link:hover {
+  opacity: .8;
+}
+
+.header__link_login {
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+}
+
+.header__link_register {
+  color: #FFFFFF;
+  width: 80px;
+  height: 32px;
+  background-color: #202020;
+}
+
+.header__account {
+  display: flex;
+  align-items: center;
+}
+
+.burger__button {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  display: none;
+}
+
+.burger__button_nonactive {
+  display: none;
+}
+
+.header__account_nonactive {
+  display: none;
+}
+
+.header__link_account {
+  padding: 8px 20px;
+  border-radius: 20px;
+  background-color: #313131;
+  color: #FFFFFF;
+}
+
+.header__link_active {
+  border-bottom: solid 1px #FFFFFF;
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__link_login {
+    padding: 5px 12px;
+  }
+
+  .header__link_register {
+    color: #FFFFFF;
+    width: 66px;
+    height: 26px;
+  }
+
+  .header__link {
+    font-size: 10px;
+  }
+
+  .header__login-item {
+    margin-right: 14px;
+  }
+
+  .header__film-list {
+    display: none;
+  }
+
+  .header__account {
+    display: none;
+  }
+
+  .burger__button {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: #202020 url("../../images/burger.svg") no-repeat center center / cover;
+    cursor: pointer;
+  }
+}
