@@ -1,3 +1,7 @@
+export const BASE_URL = "api.sergeypopov.nomoredomains.rocks";
+
+
+
 export const catalog = [
   {
     "_id": "60eac4341e70700ee41a5551",

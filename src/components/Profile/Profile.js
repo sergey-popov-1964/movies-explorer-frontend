@@ -2,8 +2,15 @@ import React from "react";
 import './Profile.css';
 import '../App/App.css';
 import Header from "../Header/Header";
+import mainApi from "../../utils/MainApi";
 
-function Profile() {
+function Profile({onSignOut}) {
+
+  function handlerSignOut() {
+    onSignOut()
+  }
+
+
   return (
     <div className="page">
       <div className="block">
@@ -41,7 +48,8 @@ function Profile() {
           <button type="button"
                   aria-label="exit"
                   className='profile__exit'
-                  name="form_exit">
+                  name="form_exit"
+                  onClick={handlerSignOut}>
             Выйти из аккаунта
           </button>
         </form>

@@ -21,6 +21,7 @@ function AboutMe() {
           <li className="about__me-text about__me-item">
             <a href="https://www.facebook.com/sergey.popov.10297/"
                target="_blank"
+               rel="noopener noreferrer"
                className="about__me-link">
               Facebook
             </a>
@@ -28,6 +29,7 @@ function AboutMe() {
           <li className="footer__text footer__item">
             <a href="https://github.com/sergey-popov-1964/movies-explorer-frontend"
                target="_blank"
+               rel="noopener noreferrer"
                className="footer__link">
               Github
             </a>

@@ -1,14 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import './Login.css';
 import '../App/App.css';
 import logoDiploma from "../../images/diplom_logo.svg";
 import {Link} from "react-router-dom";
 
-function Login() {
+function Login({onLogin}) {
+
+  const [loginState, setLoginState] = useState(
+    {
+      email: '',
+      password: '',
+    }
+  )
+
+  function handleChange(e) {
+    const {name, value} = e.target;
+    setLoginState(prevState => ({...prevState, [name]: value}));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onLogin(loginState)
+  }
+
   return (
     <div className="page">
       <div className="block">
         <form action="#"
+              onSubmit={handleSubmit}
               className="login__form"
               name='register' noValidate>
           <Link to="/" className="login__logo">
@@ -17,6 +36,8 @@ function Login() {
           <h2 className='login__title'>Рады видеть!</h2>
           <p className="login__name">E-mail</p>
           <input type="text"
+                 value={loginState.email}
+                 onChange={handleChange}
                  className="login__input"
                  name="email"
                  placeholder="введите е-mail"
@@ -24,6 +45,8 @@ function Login() {
                  maxLength="40" required/>
           <p className="login__name">Пароль</p>
           <input type="password"
+                 value={loginState.password}
+                 onChange={handleChange}
                  className="login__input"
                  name="password"
                  placeholder="введите пароль"
