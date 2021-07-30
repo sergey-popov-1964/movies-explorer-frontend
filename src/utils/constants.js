@@ -1,6 +1,6 @@
 export const BASE_URL = "api.sergeypopov.nomoredomains.rocks";
-
-
+export const BEAT_FILMS_URL = "https://api.nomoreparties.co/beatfilm-movies";
+export const BEAT_FILMS_IMAGE_URL = "https://api.nomoreparties.co";
 
 export const catalog = [
   {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Movies.css';
 import '../App/App.css';
 import Header from "../Header/Header";
@@ -9,6 +9,14 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
 
+  const [isShortFilms, setIsShortFilms] = useState(false);
+  // console.log("isShortFilms_1", isShortFilms)
+
+  function handleShortFilms(data) {
+    setIsShortFilms(!data)
+    // console.log("isShortFilms", isShortFilms)
+  }
+
   return (
     <div className="page">
       <div className="block">
@@ -18,10 +26,13 @@ function Movies() {
                 currentSection={"movies"}
         />
         <SearchForm/>
-        <FilterCheckbox/>
+        <FilterCheckbox
+          onCheck = {handleShortFilms}
+        />
         <MoviesCardList
           isNextButton={true}
           isTypeList={'movies'}
+          isShortFilms = {isShortFilms}
         />
         <Footer/>
       </div>
