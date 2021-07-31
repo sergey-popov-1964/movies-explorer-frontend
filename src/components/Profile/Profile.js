@@ -2,14 +2,12 @@ import React from "react";
 import './Profile.css';
 import '../App/App.css';
 import Header from "../Header/Header";
-import mainApi from "../../utils/MainApi";
 
 function Profile({onSignOut}) {
 
   function handlerSignOut() {
     onSignOut()
   }
-
 
   return (
     <div className="page">

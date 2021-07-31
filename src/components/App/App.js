@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import Notfound from "../Notfound/Notfound";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
       .then(res => {
         setLoggedIn(true);
         setReadyResponse(true)
-        mainApi.currentToken = jwt;
+        moviesApi.currentToken = jwt;
         history.push('/movies');
       })
       .catch((error) => {
@@ -58,7 +59,8 @@ function App() {
       .then((res) => {
         localStorage.setItem('token', res.token);
         setLoggedIn(true);
-        mainApi.currentToken = res.token;
+        moviesApi.currentToken = res.token;
+
         history.push('/movies');
       })
       .catch((error) => {
@@ -69,7 +71,7 @@ function App() {
   function onSignOut() {
     setLoggedIn(false);
     localStorage.removeItem('token');
-    mainApi.currentToken = '';
+    moviesApi.currentToken = '';
     history.push('/');
   }
 

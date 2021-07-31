@@ -10,6 +10,7 @@ function MoviesCard({card, type}) {
   const [isFilmSaved, setIsFilmSaved] = useState(card.saved)
   const isType = type
 
+// console.log(type)
 
   function handleChangeSaved() {
     if (isFilmSaved) {

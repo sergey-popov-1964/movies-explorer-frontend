@@ -20,7 +20,6 @@ class	MainApi {
       body: JSON.stringify({email, password})
     })
       .then(this.handleResponse);
-
   }
 
   registration({name, email, password}) {
@@ -46,6 +45,16 @@ class	MainApi {
       .then(this.handleResponse);
   }
 
+  getBeatFilms(url) {
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(this.handleResponse);
+  }
 
 
 
