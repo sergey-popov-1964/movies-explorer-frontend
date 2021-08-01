@@ -16,6 +16,7 @@ function Movies() {
   const [isReady, setIsReady] = useState(false);
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
+  const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
 
   function handleShortFilms(data) {
     setIsShortFilms(!data)
@@ -25,8 +26,12 @@ function Movies() {
     setSearchFilm(data)
   }
 
-  function handleIsShowList(data) {
+  function handleSetShowList(data) {
     setIsShowList(data)
+  }
+
+  function handleSetMessage(data) {
+    setShowMessage(data)
   }
 
   useEffect(() => {
@@ -49,7 +54,8 @@ function Movies() {
           />
           <SearchForm
             onSubmit={handleSearchFilms}
-            onShowList={handleIsShowList}
+            onShowList={handleSetShowList}
+            onSetMessage={handleSetMessage}
           />
           <FilterCheckbox
             onCheck={handleShortFilms}
@@ -61,6 +67,8 @@ function Movies() {
             isShowList={isShowList}
             currentBase={beatFilms}
             searchFilm={searchFilm}
+            onSetShowList={handleSetShowList}
+            message={showMessage}
           />
           <Footer/>
         </div>

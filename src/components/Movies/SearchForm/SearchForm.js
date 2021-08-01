@@ -4,7 +4,7 @@ import '../../App/App.css';
 import '../Movies.css';
 import magnifier from "../../../images/magnifier.svg";
 
-function SearchForm({onSubmit, onShowList}) {
+function SearchForm({onSubmit, onShowList, onSetMessage}) {
 
   useEffect(() => {
     onShowList(false)
@@ -20,8 +20,10 @@ function SearchForm({onSubmit, onShowList}) {
     onSubmit(filmValue)
     if (filmValue === "") {
       onShowList(false)
+      onSetMessage('Введите данные в строку поиска')
     } else {
       onShowList(true)
+      onSetMessage('Ничего не найдено')
     }
     setFilmValue('')
   }

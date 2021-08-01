@@ -1,16 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import '../../App/App.css';
 import './MoviesCardList.css';
-import MoviesCard from "../MoviesCard/MoviesCard";
+import CardListShow from "../CardListShow/CardListShow";
 
-function MoviesCardList({
-                          isNextButton,
-                          isTypeList,
-                          isShortFilms,
-                          currentBase,
-                          searchFilm,
-                          isShowList,
-                        }) {
+function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
 
   const [filterAllFilm, setIsFilterAllFilm] = useState([]);
   const [filterShortFilm, setIsFilterShortFilm] = useState([]);
@@ -26,58 +19,15 @@ function MoviesCardList({
     setIsFilterShortFilm(filteredShortFilms)
   }, [searchFilm])
 
-
-  if (isShortFilms) {
+  if (isShowList) {
     return (
-      <div className="block movies__list">
-        <section className="elements">
-          <ul className="elements__list">
-            {
-              filterShortFilm.map((item) => (
-                isShowList
-                  ?
-                  <MoviesCard card={item}
-                              type={isTypeList}
-                              key={item.id}
-                  />
-                  :
-                  ""
-              ))
-            }
-          </ul>
-          {filterShortFilm.length === 0 ? <div>Ничего не найдено</div> : ""}
-          {!isShowList ? <div>Введите данные в строку поиска</div> : ""}
-          <div className="movies__next">
-            <button type="button" className="movies__button">Еще</button>
-          </div>
-        </section>
-      </div>
+      <CardListShow
+        currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
+      />
     )
   } else {
     return (
-      <div className="block movies__list">
-        <section className="elements">
-          <ul className="elements__list">
-            {
-              filterAllFilm.map((item) => (
-                isShowList
-                  ?
-                  <MoviesCard card={item}
-                              type={isTypeList}
-                              key={item.id}
-                  />
-                  :
-                  ""
-              ))
-            }
-          </ul>
-          {filterAllFilm.length === 0 ? <div>Ничего не найдено</div> : ""}
-          {!isShowList ? <div>Введите данные в строку поиска</div> : ""}
-          <div className="movies__next">
-            <button type="button" className="movies__button">Еще</button>
-          </div>
-        </section>
-      </div>
+      <p className="movies__message">Ничего не найдено. Введите данные в строку поиска</p>
     )
   }
 }
