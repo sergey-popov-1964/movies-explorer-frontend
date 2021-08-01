@@ -10,8 +10,6 @@ function MoviesCard({card, type}) {
   const [isFilmSaved, setIsFilmSaved] = useState(card.saved)
   const isType = type
 
-// console.log(type)
-
   function handleChangeSaved() {
     if (isFilmSaved) {
       setIsFilmSaved(false)
@@ -48,31 +46,6 @@ function MoviesCard({card, type}) {
       </div>
     </li>
   );
-
-  // return (
-    // <li className="element">
-    //   <img src={card.image}
-    //        alt={card.nameRU}
-    //        className="image"/>
-    //   <div className="description">
-    //     <div className="content">
-    //       <p className="content__text">{card.nameRU}</p>
-    //       <p className="content__duration">{`${lengthHour}ч `}{lengthMinute !== 0 ? `${lengthMinute}м` : ""}</p>
-    //     </div>
-    //     <img src={heartRed}
-    //          className={isType === "movies" && isFilmSaved ? "content__heart" : "content__heart_nonactive"}
-    //          onClick={handleChangeSaved}
-    //          alt="Сохраненный фильм"/>
-    //     <img src={heartTransparent}
-    //          className={isType === "movies" && !isFilmSaved ? "content__heart" : "content__heart_nonactive"}
-    //          onClick={handleChangeSaved}
-    //          alt="Кнопка сохранения фильма"/>
-    //     <img src={closeButton}
-    //          className={isType === "saved" ? "content__close" : "content__close_nonactive"}
-    //          alt="Кнопка удаления фильма из сохраненных"/>
-    //   </div>
-    // </li>
-  // );
 }
 
 export default MoviesCard;

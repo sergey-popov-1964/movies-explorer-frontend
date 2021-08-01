@@ -1,31 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '../../App/App.css';
 import './SaveMoviesCardList.css';
 import MoviesCard from "../../Movies/MoviesCard/MoviesCard";
-import moviesApi from "../../../utils/MoviesApi";
-import Preloader from "../../Preloader/Preloader";
 
 function SaveMoviesCardList({isNextButton, isTypeList, isShortFilms, currentBase}) {
-
-  // const [beatFilms, setBeatFilms] = useState([]);
-  // const [isReadyBeat, setIsReadyBeat] = useState(false);
-
-  // useEffect(() => {
-  //   if(!isReadyBeat) {
-  //     moviesApi.getBeatFilms()
-  //       .then(data => {
-  //         setBeatFilms(data)
-  //         setIsReadyBeat(true)
-  //       })
-  //       .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-  //   }
-  // }, [])
-
-  // if (!isReadyBeat) {
-  //   return (
-  //     <Preloader/>
-  //   )
-  // } else {
 
   if (isShortFilms) {
     return (

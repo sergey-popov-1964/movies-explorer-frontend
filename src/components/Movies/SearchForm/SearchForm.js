@@ -1,10 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './SearchForm.css';
 import '../../App/App.css';
 import '../Movies.css';
 import magnifier from "../../../images/magnifier.svg";
 
-function SearchForm() {
+function SearchForm({onSubmit, onShowList}) {
+
+  useEffect(() => {
+    onShowList(false)
+  }, [])
+  const [filmValue, setFilmValue] = useState('');
+
+  function handleChangeName(e) {
+    setFilmValue(e.target.value);
+  }
+
+  function handlerSubmit(e) {
+    e.preventDefault();
+    onSubmit(filmValue)
+    if (filmValue === "") {
+      onShowList(false)
+    } else {
+      onShowList(true)
+    }
+    setFilmValue('')
+  }
 
   return (
     <div className="block movies__search">
@@ -13,11 +33,14 @@ function SearchForm() {
           <img src={magnifier} className="search__icon" alt="Иконка лупа"/>
           <input type="text"
                  className="search__input"
+                 value={filmValue}
+                 onChange={handleChangeName}
                  name="film"
                  placeholder="фильм"
                  minLength="2"
                  maxLength="100" required/>
           <button type="submit"
+                  onClick={handlerSubmit}
                   aria-label="find"
                   className="search__button"
                   name="form_submit">

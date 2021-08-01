@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import logoDiploma from "../../images/diplom_logo.svg";
 import "../App/App.css"
 import './Header.css'

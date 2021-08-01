@@ -17,26 +17,26 @@ function App() {
 
   const history = useHistory();
   const [isLoggedIn, setLoggedIn] = useState(false)
-  const [readyResponse, setReadyResponse] = useState(false)
+  // const [readyResponse, setReadyResponse] = useState(false)
 
 
   useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (!jwt) {
-      setReadyResponse(true)
+      // setReadyResponse(true)
       return
     }
     mainApi.checkToken(jwt)
       .then(res => {
         setLoggedIn(true);
-        setReadyResponse(true)
+        // setReadyResponse(true)
         moviesApi.currentToken = jwt;
         history.push('/movies');
       })
       .catch((error) => {
         localStorage.removeItem('token');
         console.log("Что-то пошло не так", error)
-        setReadyResponse(true)
+        // setReadyResponse(true)
       });
   }, [history])
 

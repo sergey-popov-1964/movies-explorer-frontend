@@ -5,46 +5,39 @@ import FilterCheckbox from "../Movies/FilterCheckbox/FilterCheckbox";
 import Footer from "../Footer/Footer";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import SaveMoviesCardList from "./SaveMoviesCardList/SaveMoviesCardList";
-import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import moviesApi from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
 
 
-function SavedMovies(props) {
+function SavedMovies() {
 
-  // console.log(props.beatFilms)
   const [isShortFilms, setIsShortFilms] = useState(false);
 
   function handleShortFilms(data) {
     setIsShortFilms(!data)
   }
+
   const [saveFilms, setSaveFilms] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if(!isReady) {
-      moviesApi.getSaveFilms()
-        .then(data => {
-          setSaveFilms(data.data)
-          console.log(data)
-          setIsReady(true)
-        })
-        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-    }
+    moviesApi.getSaveFilms()
+      .then(data => {
+        setSaveFilms(data.data)
+        console.log(data)
+        setIsReady(true)
+      })
+      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
   }, [])
 
-  if (!isReady) {
-    return (
-      <Preloader/>
-    )
-  } else {
+  if (isReady) {
     return (
       <div className="page">
         <div className="block">
           <Header isFilms={true}
                   isLogin={false}
                   isAccount={true}
-                  currentSection={"movies"}
+                  currentSection={"saved-movies"}
           />
           <SearchForm/>
           <FilterCheckbox
@@ -54,14 +47,26 @@ function SavedMovies(props) {
             isNextButton={true}
             isTypeList={'movies'}
             isShortFilms={isShortFilms}
-            currentBase={saveFilms}
+            currentBase={saveFilms}/>
+          <Footer/>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="page">
+        <div className="block">
+          <Header isFilms={true}
+                  isLogin={false}
+                  isAccount={true}
+                  currentSection={"saved-movies"}
           />
+          <Preloader/>
           <Footer/>
         </div>
       </div>
     )
   }
-
 }
 
 export default SavedMovies;
