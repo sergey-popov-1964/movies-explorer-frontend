@@ -44,7 +44,6 @@ function App() {
   function onRegister(data, typeError) {
     mainApi.registration(data)
       .then(() => {
-        console.log("OK")
         setLoggedIn(true);
         history.push('/signin');
       })

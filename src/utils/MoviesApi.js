@@ -42,6 +42,53 @@ class	MoviesApi {
       .then(this.handleResponse);
   }
 
+  addSaveFilm(data) {
+    return fetch(this._saveFilmsUrl, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._currentToken}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(this.handleResponse);
+  }
+
+
+  // routesMovie.delete('/movies/:movieId', deleteMovie);
+
+  // country,
+  // director,
+  // duration,
+  // year,
+  // description,
+  // image,
+  // trailer,
+  // nameRU,
+  // nameEN,
+  // thumbnail,
+  // movieId,
+  // owner: ownerID,
+
+
+
+
+
+
+
+
+  deleteSaveFilm(id) {
+    return fetch(`${this._saveFilmsUrl}/cards/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._currentToken}`
+      },
+    })
+      .then(this.handleResponse);
+  }
 }
 
 const beatFilmsUrl = 'https://api.nomoreparties.co/beatfilm-movies';

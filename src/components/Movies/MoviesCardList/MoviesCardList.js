@@ -23,6 +23,7 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
     return (
       <CardListShow
         currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
+        type={"movies"}
       />
     )
   } else {

@@ -2,14 +2,18 @@ import React, {useEffect, useState} from 'react';
 import '../../App/App.css';
 import './CardListShow.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
+import {displayCards} from "../../../utils/utils"
 
-function CardListShow({currentBase}) {
+function CardListShow({currentBase, type}) {
 
-  const [currentPosition, setCurrentPosition] = useState(3);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [stepIncrementPosition, setStepIncrementPosition] = useState(3);
   const [isShowButton, setIsShowButton] = useState(true);
 
   useEffect(() => {
-    setCurrentPosition(3)
+    const position = displayCards()
+    setCurrentPosition(position.init)
+    setStepIncrementPosition(position.step)
     if (currentBase.length <= currentPosition) {
       setIsShowButton(false)
     } else {
@@ -18,7 +22,7 @@ function CardListShow({currentBase}) {
   }, [currentBase])
 
   function handleClick() {
-    const i = currentPosition + 3
+    const i = currentPosition + stepIncrementPosition
     setCurrentPosition(i)
     if (i >= currentBase.length) {
       setIsShowButton(false)
@@ -34,6 +38,7 @@ function CardListShow({currentBase}) {
               index < currentPosition && index <= currentBase.length
                 ?
                 <MoviesCard card={item}
+                            type={type}
                             key={item.id}
                 />
                 :
