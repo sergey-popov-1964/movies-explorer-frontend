@@ -1,49 +1,47 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../App/App.css';
 import './SaveMoviesCardList.css';
 import MoviesCard from "../../Movies/MoviesCard/MoviesCard";
+import CardListShow from "../../Movies/CardListShow/CardListShow";
+import SaveMoviesCard from "../SaveMoviesCard/SaveMoviesCard";
+import SaveCardListShow from "../SaveCardListShow/SaveCardListShow";
 
-function SaveMoviesCardList({isNextButton, isTypeList, isShortFilms, currentBase}) {
+function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
 
-  if (isShortFilms) {
+  const [filterAllFilm, setIsFilterAllFilm] = useState([]);
+  const [filterShortFilm, setIsFilterShortFilm] = useState([]);
+  const [filterFilm, setIsFilterFilm] = useState([]);
+
+  useEffect(() => {
+    console.log(currentBase)
+    const filteredAllFilms = currentBase.filter(item => {
+      return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
+    });
+    const filteredShortFilms = currentBase.filter(item => {
+      return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`) && item.duration <= 40
+    });
+    setIsFilterAllFilm(filteredAllFilms)
+    setIsFilterShortFilm(filteredShortFilms)
+    setIsFilterFilm(isShortFilms ? filterShortFilm : filterAllFilm)
+
+
+  }, [searchFilm])
+
+
+  console.log(isShortFilms ? filterShortFilm : filterAllFilm)
+
+  if (isShowList) {
     return (
-      <div className="block movies__list">
-        <section className="elements">
-          <ul className="elements__list">
-            {
-              currentBase.map((item) => (
-                item.duration <= 40
-                  ? <MoviesCard card={item}
-                                type={isTypeList}
-                                key={item._id}/>
-                  : ""
-              ))
-            }
-          </ul>
-          <div className="movies__next">
-            <button type="button" className="movies__button">Еще</button>
-          </div>
-        </section>
-      </div>
+      <SaveCardListShow
+        currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
+        type={"movies"}
+      />
     )
   } else {
     return (
-      <div className="block movies__list">
-        <section className="elements">
-          <ul className="elements__list">
-            {
-              currentBase.map((item) => (
-                <MoviesCard card={item}
-                            type={isTypeList}
-                            key={item.id}/>
-              ))
-            }
-          </ul>
-        </section>
-      </div>
+      <p className="movies__message">Ничего не найдено. Введите данные в строку поиска</p>
     )
   }
-  // }
 }
 
 export default SaveMoviesCardList;

@@ -11,6 +11,7 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
 
+  const [didMount, setDidMount] = useState(false);
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [beatFilms, setBeatFilms] = useState([]);
   const [isReady, setIsReady] = useState(false);
@@ -35,15 +36,19 @@ function Movies() {
   }
 
   useEffect(() => {
+    setDidMount(true);
     moviesApi.getBeatFilms()
       .then(data => {
         setBeatFilms(data)
         setIsReady(true)
       })
       .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+    return () => setDidMount(false);
   }, [])
 
-  if (isReady) {
+  if(!didMount) {
+    return null;
+  } else if (isReady) {
     return (
       <div className="page">
         <div className="block">
