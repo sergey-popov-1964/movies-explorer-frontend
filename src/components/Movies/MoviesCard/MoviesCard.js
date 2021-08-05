@@ -18,15 +18,18 @@ function MoviesCard({card, type}) {
         duration: card.duration,
         year: card.year,
         description: card.description,
-        image: BEAT_FILMS_IMAGE_URL+card.image.url,
+        image: BEAT_FILMS_IMAGE_URL + card.image.url,
         trailer: card.trailerLink,
         nameRU: card.nameRU,
         nameEN: card.nameEN === "" ? "Empty" : card.nameEN,
-        thumbnail: BEAT_FILMS_IMAGE_URL+card.image.formats.thumbnail.url,
+        thumbnail: BEAT_FILMS_IMAGE_URL + card.image.formats.thumbnail.url,
         movieId: card.id,
       }
       MoviesApi.addSaveFilm(data)
-        .then(() => {
+        .then((data) => {
+          if (localStorage.getItem('saveFilms')) {
+            localStorage.removeItem('saveFilms');
+          }
           setIsFilmSaved(true)
         })
         .catch((error) => {
@@ -51,7 +54,7 @@ function MoviesCard({card, type}) {
         </div>
         <img src={heartRed}
              className={type === "movies" && isFilmSaved ? "content__heart" : "content__heart_nonactive"}
-             // onClick={handleChangeSaved}
+          // onClick={handleChangeSaved}
              alt="Сохраненный фильм"/>
         <img src={heartTransparent}
              className={type === "movies" && !isFilmSaved ? "content__heart" : "content__heart_nonactive"}

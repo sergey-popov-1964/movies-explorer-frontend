@@ -36,19 +36,27 @@ function SavedMovies() {
   }
 
   useEffect(() => {
-    setDidMount(true);
-    moviesApi.getSaveFilms()
-      .then(data => {
-        setSaveFilms(data.data)
-        setIsReady(true)
-      })
-      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-    return () => setDidMount(false);
+    // setDidMount(true);
+    // const storageSaveFilms = localStorage.getItem('saveFilms');
+    // if(storageSaveFilms) {
+    //   const array = JSON.parse(localStorage.getItem("saveFilms"));
+      setSaveFilms(localStorage.getItem('saveFilms'))
+      // setIsReady(true)
+    // } else {
+    //   moviesApi.getSaveFilms()
+    //     .then(data => {
+    //       setSaveFilms(data.data)
+    //       localStorage.setItem('saveFilms', JSON.stringify(data.data));
+    //       setIsReady(true)
+    //     })
+    //     .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+    // }
+    // return () => setDidMount(false);
   }, [])
 
-  if(!didMount) {
-    return null;
-  } else if (isReady) {
+  // if(!didMount) {
+  //   return null;
+  // } else if (isReady) {
     return (
       <div className="page">
         <div className="block">
@@ -65,35 +73,21 @@ function SavedMovies() {
           <FilterCheckbox
             onCheck={handleShortFilms}
           />
-          <SaveMoviesCardList
-            isNextButton={true}
-            isTypeList={'movies'}
-            isShortFilms={isShortFilms}
-            isShowList={isShowList}
-            currentBase={saveFilms}
-            searchFilm={searchFilm}
-            onSetShowList={handleSetShowList}
-            message={showMessage}
-          />
+          {/*<SaveMoviesCardList*/}
+          {/*  isNextButton={true}*/}
+          {/*  isTypeList={'movies'}*/}
+          {/*  isShortFilms={isShortFilms}*/}
+          {/*  isShowList={isShowList}*/}
+          {/*  currentBase={saveFilms}*/}
+          {/*  searchFilm={searchFilm}*/}
+          {/*  onSetShowList={handleSetShowList}*/}
+          {/*  message={showMessage}*/}
+          {/*/>*/}
           <Footer/>
         </div>
       </div>
     )
-  } else {
-    return (
-      <div className="page">
-        <div className="block">
-          <Header isFilms={true}
-                  isLogin={false}
-                  isAccount={true}
-                  currentSection={"saved-movies"}
-          />
-          <Preloader/>
-          <Footer/>
-        </div>
-      </div>
-    )
-  }
+
 }
 
 export default SavedMovies;

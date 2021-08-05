@@ -1,20 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './SaveMoviesCard.css';
-import heartRed from "../../../images/heart-red.svg";
-import heartTransparent from "../../../images/heart-transparent.svg";
 import closeButton from "../../../images/close-button.svg";
-import {BEAT_FILMS_IMAGE_URL} from "../../../utils/constants"
-import MoviesApi from "../../../utils/MoviesApi"
+// import MoviesApi from "../../../utils/MoviesApi"
 
 function SaveMoviesCard({card, onDelete}) {
 
-  // function onClickDeleteFilm() {
-  //   MoviesApi.deleteSaveFilm(card._id)
-  //     .then(response => {
-  //       console.log("Успешно")
-  //     })
-  //     .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
-  // }
+  function handleDeleteFilm() {
+    onDelete(card._id)
+  }
 
   const lengthHour = (card.duration - card.duration % 60) / 60
   const lengthMinute = card.duration % 60
@@ -31,7 +24,7 @@ function SaveMoviesCard({card, onDelete}) {
         </div>
         <img src={closeButton}
              className="content__close"
-             // onClick={onClickDeleteFilm}
+             onClick={handleDeleteFilm}
              alt="Кнопка удаления фильма из сохраненных"/>
       </div>
     </li>

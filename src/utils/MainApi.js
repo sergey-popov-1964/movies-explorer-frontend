@@ -45,7 +45,6 @@ class	MainApi {
       .then(this.handleResponse);
   }
 
-
 }
 
 const baseUrl = 'https://api.sergeypopov.nomoredomains.rocks';
