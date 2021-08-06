@@ -4,11 +4,12 @@ import './CardListShow.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
 import {displayCards} from "../../../utils/utils"
 
-function CardListShow({currentBase, type}) {
+function CardListShow({currentBase, saveFilms}) {
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const [stepIncrementPosition, setStepIncrementPosition] = useState(3);
   const [isShowButton, setIsShowButton] = useState(true);
+  const [tempSaveFilms, setTempSaveFilms] = useState(saveFilms);
 
   useEffect(() => {
     const position = displayCards()
@@ -20,6 +21,16 @@ function CardListShow({currentBase, type}) {
       setIsShowButton(true)
     }
   }, [currentBase])
+
+  function handleWriteSaveFilms(data) {
+    // const temp = JSON.stringify(stateSaved)
+    // setTempSaveFilms(data)
+    // localStorage.setItem('saveFilms', JSON.stringify(data));
+
+    // console.log(tempSaveFilms)
+    // console.log(JSON.parse(localStorage.getItem('saveFilms')))
+
+  }
 
   function handleClick() {
     const i = currentPosition + stepIncrementPosition
@@ -38,7 +49,9 @@ function CardListShow({currentBase, type}) {
               index < currentPosition && index <= currentBase.length
                 ?
                 <MoviesCard card={item}
-                            type={type}
+                            saveFilms={tempSaveFilms}
+                            writeSaveFilms={handleWriteSaveFilms}
+                            // type={type}
                             key={item.id}
                 />
                 :

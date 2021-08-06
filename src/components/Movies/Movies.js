@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './Movies.css';
 import '../App/App.css';
@@ -6,10 +6,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import SearchForm from "./SearchForm/SearchForm";
-import moviesApi from "../../utils/MoviesApi";
-import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import {CurrentUserContext} from "../../context/CurrentUserContext";
 
 function Movies() {
 
@@ -39,16 +36,16 @@ function Movies() {
     setShowMessage(data)
   }
 
-  useEffect(() => {
-    setDidMount(true);
-    moviesApi.getBeatFilms()
-      .then(data => {
-        // setBeatFilms(data)
-        setIsReady(true)
-      })
-      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-    return () => setDidMount(false);
-  }, [])
+  // useEffect(() => {
+  //   setDidMount(true);
+  //   moviesApi.getBeatFilms()
+  //     .then(data => {
+  //       // setBeatFilms(data)
+  //       setIsReady(true)
+  //     })
+  //     .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+  //   return () => setDidMount(false);
+  // }, [])
 
   // if(!didMount) {
   //   return null;
@@ -79,7 +76,6 @@ function Movies() {
             onSetShowList={handleSetShowList}
             message={showMessage}
           />
-          <Footer/>
         </div>
       </div>
     )

@@ -9,6 +9,8 @@ function SaveMoviesCard({card, onDelete}) {
     onDelete(card._id)
   }
 
+  // console.log(card)
+
   const lengthHour = (card.duration - card.duration % 60) / 60
   const lengthMinute = card.duration % 60
 

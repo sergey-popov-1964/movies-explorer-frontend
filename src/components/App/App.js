@@ -25,29 +25,23 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    if(isLoggedIn) {
+      moviesApi.getBeatFilms()
+        .then(data => {
+          setBeatFilms(data)
+        })
+        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+    }
+  }, [isLoggedIn])
+
+  useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (!jwt) {
+      setIsReady(true);
       return;
     }
     onMain(jwt);
   }, [history])
-
-  useEffect(() => {
-    moviesApi.getBeatFilms()
-      .then(data => {
-        setBeatFilms(data)
-        setIsReady(true);
-      })
-      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-  }, [])
-
-  // useEffect(() => {
-  //   const jwt = localStorage.getItem('token');
-  //   if (!jwt) {
-  //     return;
-  //   }
-  //   onMain(jwt);
-  // }, [history])
 
   function onMain(data) {
     mainApi.checkToken(data)
@@ -74,15 +68,6 @@ function App() {
     }
 
   }
-
-  // function onGetBeatFilms() {
-  //   moviesApi.getBeatFilms()
-  //     .then(data => {
-  //       setBeatFilms(data)
-  //       setIsReady(true)
-  //     })
-  //     .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-  // }
 
   function onRegister(data, typeError) {
     mainApi.registration(data)
@@ -114,6 +99,7 @@ function App() {
     localStorage.removeItem('saveFilms');
     localStorage.removeItem('token');
     localStorage.removeItem('beatFilms');
+    setIsReady(true);
     moviesApi.currentToken = '';
     history.push('/');
   }
@@ -131,13 +117,11 @@ function App() {
           <div className="root">
             <Switch>
 
-              {/*<BeatFilmContext.Provider value={beatFilms}>*/}
               <ProtectedRoute
                 path="/movies"
                 isLoggedIn={isLoggedIn}
                 component={Movies}
               />
-              {/*</BeatFilmContext.Provider>*/}
 
               <ProtectedRoute
                 path="/saved-movies"

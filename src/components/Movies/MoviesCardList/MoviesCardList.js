@@ -7,8 +7,13 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
 
   const [filterAllFilm, setIsFilterAllFilm] = useState([]);
   const [filterShortFilm, setIsFilterShortFilm] = useState([]);
+  const [saveFilms, setSaveFilms] = useState([]);
+
+
 
   useEffect(() => {
+    setSaveFilms(JSON.parse(localStorage.getItem("saveFilms")))
+
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
     });
@@ -23,7 +28,8 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
     return (
       <CardListShow
         currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
-        type={"movies"}
+        saveFilms={saveFilms}
+        // type={"movies"}
       />
     )
   } else {

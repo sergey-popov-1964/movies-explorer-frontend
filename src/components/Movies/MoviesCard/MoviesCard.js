@@ -1,14 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './MoviesCard.css';
 import heartRed from "../../../images/heart-red.svg";
 import heartTransparent from "../../../images/heart-transparent.svg";
-import closeButton from "../../../images/close-button.svg";
 import {BEAT_FILMS_IMAGE_URL} from "../../../utils/constants"
 import MoviesApi from "../../../utils/MoviesApi"
+import {displayCards} from "../../../utils/utils";
 
-function MoviesCard({card, type}) {
+function MoviesCard({card, saveFilms,writeSaveFilms}) {
 
   const [isFilmSaved, setIsFilmSaved] = useState(false)
+  const [isSaved, setIsSaved] = useState(false)
+  const [stateSaved, setStateSaved] = useState(saveFilms)
+
+
+  useEffect(() => {
+    let findSave = saveFilms.find(o => o.movieId === card.id);
+    findSave ? setIsSaved(true) : setIsSaved(false)
+    console.log(saveFilms)
+    // if(saveFilms.filter((item) => item._id.includes(card.id)))
+    // {
+    //   setIsSaved(true)
+    //   console.log(saveFilms.filter((item) => item._id.includes(card.id)))
+    // } else {
+    //   setIsSaved(false)
+    //   console.log(saveFilms.filter((item) => item._id.includes(card.id)))
+    // }
+    //
+    // const newCatalog = saveFilms.filter((item) => item._id.includes(card.id));
+    // console.log(newCatalog)
+      // setIsSaved(saveFilms.filter((item) => item._id === card.id ))
+  }, [])
 
   function handleSaveFilm() {
     if (!isFilmSaved) {
@@ -27,17 +48,30 @@ function MoviesCard({card, type}) {
       }
       MoviesApi.addSaveFilm(data)
         .then((data) => {
-          if (localStorage.getItem('saveFilms')) {
-            localStorage.removeItem('saveFilms');
-          }
-          setIsFilmSaved(true)
+// console.log(data)
+//           setStateSaved([data, ...stateSaved]);
+          console.log(stateSaved)
+          const temp1 = stateSaved
+          temp1.push(data)
+          console.log(temp1)
+          // setStateSaved([...saveFilms]);
+          // if (localStorage.getItem('saveFilms')) {
+          //   localStorage.removeItem('saveFilms');
+          // }
+          // setIsSaved(true)
+          // localStorage.removeItem('saveFilms');
+          // const temp = JSON.stringify(stateSaved)
+          // // localStorage.setItem('saveFilms', temp);
+          // console.log(stateSaved)
+          // // console.log(temp)
+          // console.log(JSON.parse(localStorage.getItem('saveFilms')))
+          writeSaveFilms(stateSaved)
         })
         .catch((error) => {
           console.log("Что-то пошло не так", error)
         });
     }
   }
-
 
   const lengthHour = (card.duration - card.duration % 60) / 60
   const lengthMinute = card.duration % 60
@@ -53,16 +87,12 @@ function MoviesCard({card, type}) {
           <p className="content__duration">{`${lengthHour}ч `}{lengthMinute !== 0 ? `${lengthMinute}м` : ""}</p>
         </div>
         <img src={heartRed}
-             className={type === "movies" && isFilmSaved ? "content__heart" : "content__heart_nonactive"}
-          // onClick={handleChangeSaved}
+             className={isSaved ? "content__heart" : "content__heart_nonactive"}
              alt="Сохраненный фильм"/>
         <img src={heartTransparent}
-             className={type === "movies" && !isFilmSaved ? "content__heart" : "content__heart_nonactive"}
+             className={isSaved ? "content__heart_nonactive" : "content__heart"}
              onClick={handleSaveFilm}
              alt="Кнопка сохранения фильма"/>
-        <img src={closeButton}
-             className={type === "saved" ? "content__close" : "content__close_nonactive"}
-             alt="Кнопка удаления фильма из сохраненных"/>
       </div>
     </li>
   );
