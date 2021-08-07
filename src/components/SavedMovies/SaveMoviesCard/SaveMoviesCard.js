@@ -1,15 +1,12 @@
 import React from 'react';
 import './SaveMoviesCard.css';
 import closeButton from "../../../images/close-button.svg";
-// import MoviesApi from "../../../utils/MoviesApi"
 
 function SaveMoviesCard({card, onDelete}) {
 
   function handleDeleteFilm() {
     onDelete(card._id)
   }
-
-  // console.log(card)
 
   const lengthHour = (card.duration - card.duration % 60) / 60
   const lengthMinute = card.duration % 60

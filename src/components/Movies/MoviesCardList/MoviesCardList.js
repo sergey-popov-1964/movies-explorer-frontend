@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../../App/App.css';
 import './MoviesCardList.css';
 import CardListShow from "../CardListShow/CardListShow";
+import moviesApi from "../../../utils/MoviesApi";
 
 function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
 
@@ -10,10 +11,10 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
   const [saveFilms, setSaveFilms] = useState([]);
 
 
-
   useEffect(() => {
     setSaveFilms(JSON.parse(localStorage.getItem("saveFilms")))
-
+  }, [])
+  useEffect(() => {
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
     });
@@ -24,12 +25,52 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
     setIsFilterShortFilm(filteredShortFilms)
   }, [searchFilm])
 
+  function handleSaveFilms(data) {
+    setSaveFilms(data)
+    localStorage.setItem('saveFilms', JSON.stringify(data));
+  }
+
+  function handleDeleteSaveFilms(data) {
+    const filmsToSave = saveFilms.filter(item => {
+      return item.movieId !== data
+    });
+
+    saveFilms.forEach((element) => {
+      if(element.movieId === data) {
+       console.log(element._id)
+        moviesApi.deleteSaveFilm(element._id)
+          .then(data => {
+            setSaveFilms(filmsToSave)
+            localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+          })
+          .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
+      }
+
+      // setSaveFilms(filmsToSave)
+      // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+    })
+
+
+
+
+    // moviesApi.deleteSaveFilm(data)
+    //   .then(data => {
+    //     setSaveFilms(filmsToSave)
+    //     localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+    //   })
+    //   .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
+    //
+    // setSaveFilms(filmsToSave)
+    // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+  }
+
   if (isShowList) {
     return (
       <CardListShow
         currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
         saveFilms={saveFilms}
-        // type={"movies"}
+        onSaveFilms={handleSaveFilms}
+        onDeleteFilms={handleDeleteSaveFilms}
       />
     )
   } else {

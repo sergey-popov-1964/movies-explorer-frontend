@@ -3,9 +3,13 @@ import '../../App/App.css';
 import './SaveMoviesCardList.css';
 import SaveMoviesCard from "../SaveMoviesCard/SaveMoviesCard";
 
-function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
+function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onDelete}) {
 
   const [filterFilm, setFilterFilm] = useState([]);
+
+  // useEffect(() => {
+  //
+  // }, [filterFilm])
 
   useEffect(() => {
     const filteredAllFilms = currentBase.filter(item => {
@@ -27,16 +31,12 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList})
     setFilterFilm(isShortFilms ? filteredShortFilms : filteredAllFilms)
   }, [isShortFilms])
 
-  function onClickDeleteFilm(cardID) {
-    console.log(cardID)
-    // moviesApi.deleteSaveFilm(cardID)
-    //   .then(data => {
-    //     const excludeFilms = AllFilm.filter((item) => item._id !== cardID);
-    //     setIsAllFilm(excludeFilms)
-    //     console.log("Успешно")
-    //     localStorage.setItem('saveFilms', JSON.stringify(excludeFilms));
-    //   })
-    //   .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
+  function handleClickDelete(cardID) {
+    const filmsToSave = filterFilm.filter(item => {
+      return item._id !== cardID
+    });
+    setFilterFilm(filmsToSave)
+    onDelete(cardID)
   }
 
   if (isShowList) {
@@ -47,6 +47,7 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList})
             {
               filterFilm.map((item) => (
                 <SaveMoviesCard card={item}
+                                onDelete={handleClickDelete}
                                 key={item._id}
                 />
               ))

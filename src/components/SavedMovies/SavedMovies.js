@@ -4,19 +4,27 @@ import Header from "../Header/Header";
 import FilterCheckbox from "../Movies/FilterCheckbox/FilterCheckbox";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import SaveMoviesCardList from "./SaveMoviesCardList/SaveMoviesCardList";
-import Preloader from "../Preloader/Preloader";
+import moviesApi from "../../utils/MoviesApi";
+
+// import Preloader from "../Preloader/Preloader";
 
 function SavedMovies() {
 
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [saveFilms, setSaveFilms] = useState([]);
-  const [isReady, setIsReady] = useState(false);
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
 
   useEffect(() => {
-    setSaveFilms(JSON.parse(localStorage.getItem("saveFilms")))
+    console.log(11212122)
+    moviesApi.getSaveFilms()
+      .then(data => {
+        console.log(data)
+        localStorage.setItem('saveFilms', JSON.stringify(data.data));
+        setSaveFilms(data.data)
+      })
+      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
   }, [])
 
   function handleShortFilms(data) {
@@ -33,6 +41,26 @@ function SavedMovies() {
 
   function handleSetMessage(data) {
     setShowMessage(data)
+  }
+
+  function handleClickDeleteFilm(cardID) {
+    console.log(cardID)
+
+    const filmsToSave = saveFilms.filter(item => {
+      return item._id !== cardID
+    });
+    // setSaveFilms( JSON.stringify(filmsToSave))
+    console.log(filmsToSave)
+    // setSaveFilms( JSON.stringify(filmsToSave))
+    // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+
+    //
+    moviesApi.deleteSaveFilm(cardID)
+      .then(data => {
+        setSaveFilms(filmsToSave)
+        localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+      })
+      .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }
 
   return (
@@ -59,6 +87,7 @@ function SavedMovies() {
           currentBase={saveFilms}
           searchFilm={searchFilm}
           onSetShowList={handleSetShowList}
+          onDelete={handleClickDeleteFilm}
           message={showMessage}
         />
       </div>

@@ -3,7 +3,6 @@ import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './Movies.css';
 import '../App/App.css';
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
@@ -11,11 +10,8 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 function Movies() {
 
   const beatFilms = React.useContext(BeatFilmContext);
-  const [didMount, setDidMount] = useState(false);
 
   const [isShortFilms, setIsShortFilms] = useState(false);
-  // const [beatFilms, setBeatFilms] = useState([]);
-  const [isReady, setIsReady] = useState(false);
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
@@ -36,20 +32,6 @@ function Movies() {
     setShowMessage(data)
   }
 
-  // useEffect(() => {
-  //   setDidMount(true);
-  //   moviesApi.getBeatFilms()
-  //     .then(data => {
-  //       // setBeatFilms(data)
-  //       setIsReady(true)
-  //     })
-  //     .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-  //   return () => setDidMount(false);
-  // }, [])
-
-  // if(!didMount) {
-  //   return null;
-  // } else if (isReady) {
     return (
       <div className="page">
         <div className="block">

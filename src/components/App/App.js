@@ -22,6 +22,7 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [beatFilms, setBeatFilms] = useState([]);
+  const [saveFilms, setSaveFilms] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -62,11 +63,16 @@ function App() {
     if (!localStorage.getItem('saveFilms')) {
       moviesApi.getSaveFilms()
         .then(data => {
-          localStorage.setItem('saveFilms', JSON.stringify(data.data));
+          if(data.data.length !== 0)
+      {
+        localStorage.setItem('saveFilms', JSON.stringify(data.data));
+        setSaveFilms(data.data)
+      } else {
+            localStorage.setItem('saveFilms', JSON.stringify(saveFilms));
+          }
         })
         .catch(() => console.log(`Ошибка загрузки данных с сервера`));
     }
-
   }
 
   function onRegister(data, typeError) {
