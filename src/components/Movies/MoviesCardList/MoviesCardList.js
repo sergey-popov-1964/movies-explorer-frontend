@@ -4,18 +4,14 @@ import './MoviesCardList.css';
 import CardListShow from "../CardListShow/CardListShow";
 import moviesApi from "../../../utils/MoviesApi";
 
-function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
+function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, savedFilms}) {
 
   const [filterAllFilm, setIsFilterAllFilm] = useState([]);
   const [filterShortFilm, setIsFilterShortFilm] = useState([]);
-  const [saveFilms, setSaveFilms] = useState([]);
-
+  const [saveFilms, setSaveFilms] = useState(savedFilms);
 
   useEffect(() => {
     setSaveFilms(JSON.parse(localStorage.getItem("saveFilms")))
-  }, [])
-
-  useEffect(() => {
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
     });
@@ -27,6 +23,9 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
   }, [searchFilm])
 
   function handleSaveFilms(data) {
+    // console.log(data)
+    // setSaveFilms(saveFilms.push(data))
+    // console.log(saveFilms)
     setSaveFilms(data)
     localStorage.setItem('saveFilms', JSON.stringify(data));
   }

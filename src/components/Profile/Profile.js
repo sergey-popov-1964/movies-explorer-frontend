@@ -7,21 +7,52 @@ import Header from "../Header/Header";
 function Profile({onSignOut}) {
 
   const currentUser = React.useContext(CurrentUserContext);
-  const [profileState, setProfileState] = useState(
+
+  const [profileName, setProfileName] = useState(
     {
-      name: '',
-      email: '',
+      name: "",
+      isValid: false,
+    }
+  );
+  const [profileEmail, setProfileEmail] = useState(
+    {
+      email: "",
+      isValid: false,
     }
   );
 
   useEffect(() => {
-    setProfileState(
+    setProfileName(
       {
        name: currentUser.data.name,
-        email: currentUser.data.email
+        isValid: false,
       }
     )
+
+    setProfileEmail(
+      {
+        email: currentUser.data.email,
+        isValid: false,
+      }
+    )
+
   }, []);
+
+  const handleChangeName = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setProfileName({...profileName, [name]: value});
+    console.log(profileName)
+  };
+
+  const handleChangeEmail = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setProfileEmail({...profileEmail, [name]: value});
+    console.log(profileEmail)
+  };
 
   function handlerSignOut() {
     onSignOut()
@@ -42,7 +73,8 @@ function Profile({onSignOut}) {
           <label className="profile__label">Имя
             <input type="text"
                    className="profile__input"
-                   value={profileState.name}
+                   onChange={handleChangeName}
+                   value={profileName.name}
                    name="name"
                    placeholder="введите имя"
                    minLength="2"
@@ -51,7 +83,8 @@ function Profile({onSignOut}) {
           <label className="profile__label">E-mail
             <input type="text"
                    className="profile__input"
-                   value={profileState.email}
+                   onChange={handleChangeEmail}
+                   value={profileEmail.email}
                    name="email"
                    placeholder="введите e-mail"
                    minLength="2"
@@ -59,6 +92,7 @@ function Profile({onSignOut}) {
           </label>
           <button type="submit"
                   aria-label="submit"
+                  disabled={true}
                   className='profile__submit'
                   name="form_submit">
             Редактировать
@@ -77,3 +111,6 @@ function Profile({onSignOut}) {
 }
 
 export default Profile;
+
+
+// var expression = /^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/;

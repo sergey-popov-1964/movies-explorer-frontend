@@ -68,7 +68,7 @@ class	MoviesApi {
 
 const beatFilmsUrl = 'https://api.nomoreparties.co/beatfilm-movies';
 const imageBeatFilmsUrl = 'https://api.nomoreparties.co';
-const saveFilmsUrl = 'https://localhost:3001';
-// const saveFilmsUrl = 'https://api.sergeypopov.nomoredomains.rocks/movies';
+// const saveFilmsUrl = 'https://localhost:3001';
+const saveFilmsUrl = 'https://api.sergeypopov.nomoredomains.rocks/movies';
 const moviesApi = new MoviesApi(beatFilmsUrl, imageBeatFilmsUrl, saveFilmsUrl);
 export default moviesApi;

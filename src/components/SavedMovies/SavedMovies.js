@@ -17,10 +17,8 @@ function SavedMovies() {
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
 
   useEffect(() => {
-    console.log(11212122)
     moviesApi.getSaveFilms()
       .then(data => {
-        console.log(data)
         localStorage.setItem('saveFilms', JSON.stringify(data.data));
         setSaveFilms(data.data)
       })
@@ -44,17 +42,9 @@ function SavedMovies() {
   }
 
   function handleClickDeleteFilm(cardID) {
-    console.log(cardID)
-
     const filmsToSave = saveFilms.filter(item => {
       return item._id !== cardID
     });
-    // setSaveFilms( JSON.stringify(filmsToSave))
-    console.log(filmsToSave)
-    // setSaveFilms( JSON.stringify(filmsToSave))
-    // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
-
-    //
     moviesApi.deleteSaveFilm(cardID)
       .then(data => {
         setSaveFilms(filmsToSave)

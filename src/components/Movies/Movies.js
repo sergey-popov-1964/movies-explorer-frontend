@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './Movies.css';
 import '../App/App.css';
@@ -15,6 +15,7 @@ function Movies() {
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
+
 
   function handleShortFilms(data) {
     setIsShortFilms(!data)

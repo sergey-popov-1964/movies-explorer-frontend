@@ -76,6 +76,12 @@
   transition: all ease .5s;
 }
 
+.login__submit_disabled {
+  background-color: #35373b;
+  color: #95ada5;
+  cursor: none;
+}
+
 .login__text {
   margin: 16px auto 0;
   padding: 0;
@@ -93,6 +99,15 @@
   font-size: 14px;
   line-height: 17px;
   color: #4285F4;
+}
+
+.login__error {
+  margin: 5px 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #cd1010;
 }
 
 @media screen and (max-width: 900px) {

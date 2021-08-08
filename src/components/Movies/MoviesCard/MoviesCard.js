@@ -11,13 +11,9 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
   const [isSaved, setIsSaved] = useState(false)
   const [stateSaved, setStateSaved] = useState(saveFilms)
 
-
-
   useEffect(() => {
     let findSave = saveFilms.find(o => o.movieId === card.id);
     findSave ? setIsSaved(true) : setIsSaved(false)
-
-    console.log(stateSaved)
   }, [])
 
   function handleSaveFilm() {
@@ -37,7 +33,6 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
       }
       MoviesApi.addSaveFilm(data)
         .then((data) => {
-console.log(data)
           setStateSaved(stateSaved.push(data))
           setIsSaved(true)
           onSaveFilms(stateSaved)
@@ -49,7 +44,6 @@ console.log(data)
   }
 
   function handleDeleteFilm() {
-    console.log(12121212121212)
     setIsSaved(false)
     onDeleteFilms(card.id)
   }

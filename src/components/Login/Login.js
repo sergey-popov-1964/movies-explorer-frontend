@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Login.css';
 import '../App/App.css';
 import logoDiploma from "../../images/diplom_logo.svg";
@@ -12,6 +12,18 @@ function Login({onLogin}) {
       password: '',
     }
   )
+  const [isValid, setIsValid] = useState(false);
+  const [errorMessageEmail, setErrorMessageEmail] = useState("l")
+  const [errorMessagePassword, setErrorMessagePassword] = useState("")
+
+  useEffect(() => {
+    const emailValidity = loginState.email.match(/^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/);
+    const passwordValidity = loginState.password.match(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g);
+
+    emailValidity ? setErrorMessageEmail("") : setErrorMessageEmail("Поле должно содержать e-mail")
+    passwordValidity ? setErrorMessagePassword("") : setErrorMessagePassword("Пароль должен содержать спецсимвол, цифру, латинскую букву в верхнем и нижнем регистре")
+    setIsValid(emailValidity && passwordValidity);
+  }, [loginState.email, loginState.password])
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -43,6 +55,7 @@ function Login({onLogin}) {
                  placeholder="введите е-mail"
                  minLength="2"
                  maxLength="40" required/>
+          <p className="login__error">{errorMessageEmail}</p>
           <p className="login__name">Пароль</p>
           <input type="password"
                  value={loginState.password}
@@ -52,9 +65,11 @@ function Login({onLogin}) {
                  placeholder="введите пароль"
                  minLength="2"
                  maxLength="200" required/>
+          <p className="login__error">{errorMessagePassword}</p>
           <button type="submit"
                   aria-label="submit"
-                  className='login__submit'
+                  className={isValid ? "login__submit" : "login__submit login__submit_disabled"}
+                  disabled={!isValid}
                   name="form_submit">
             Войти
           </button>
