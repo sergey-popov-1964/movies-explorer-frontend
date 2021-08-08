@@ -47,6 +47,7 @@ class	MainApi {
 
 }
 
-const baseUrl = 'https://api.sergeypopov.nomoredomains.rocks';
+const baseUrl = 'http://localhost:3001';
+// const baseUrl = 'https://api.sergeypopov.nomoredomains.rocks';
 const mainApi = new MainApi(baseUrl);
 export default mainApi;

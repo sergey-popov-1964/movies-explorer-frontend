@@ -14,6 +14,7 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
   useEffect(() => {
     setSaveFilms(JSON.parse(localStorage.getItem("saveFilms")))
   }, [])
+
   useEffect(() => {
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
@@ -40,14 +41,14 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList,}) {
        console.log(element._id)
         moviesApi.deleteSaveFilm(element._id)
           .then(data => {
-            setSaveFilms(filmsToSave)
-            localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+            // setSaveFilms(filmsToSave)
+            // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
           })
           .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
       }
 
-      // setSaveFilms(filmsToSave)
-      // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+      setSaveFilms(filmsToSave)
+      localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
     })
 
 
