@@ -13,9 +13,11 @@ function SaveMoviesCard({card, onDelete}) {
 
   return (
     <li className="element">
+      <a href={card.trailer} target="_blank" rel="noopener noreferrer">
       <img src={card.image}
            alt={card.nameRU}
            className="image"/>
+      </a>
       <div className="description">
         <div className="content">
           <p className="content__text">{card.nameRU}</p>

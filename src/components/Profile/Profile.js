@@ -8,51 +8,41 @@ function Profile({onSignOut}) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [profileName, setProfileName] = useState(
+  const [currentError, setCurrentError] = useState("");
+  const [profileState, setProfileState] = useState(
     {
-      name: "",
-      isValid: false,
+      name: currentUser.data.name,
+      email: currentUser.data.email,
     }
-  );
-  const [profileEmail, setProfileEmail] = useState(
-    {
-      email: "",
-      isValid: false,
-    }
-  );
+  )
+
+  const [isValid, setIsValid] = useState(false);
+  const [errorMessageEmail, setErrorMessageEmail] = useState("")
+  const [errorMessageName, setErrorMessageName] = useState("")
 
   useEffect(() => {
-    setProfileName(
-      {
-       name: currentUser.data.name,
-        isValid: false,
-      }
-    )
+    const emailValidity = profileState.email.match(/^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/);
+    const nameValidity = profileState.name.match(/^[a-zA-ZА-Яа-я0-9- ]{3,16}$/);
 
-    setProfileEmail(
-      {
-        email: currentUser.data.email,
-        isValid: false,
-      }
-    )
+    emailValidity ? setErrorMessageEmail("") : setErrorMessageEmail("Поле должно содержать e-mail")
+    nameValidity ? setErrorMessageName("") : setErrorMessageName("Поле длиной от з до 16 символов может содержать цифру, латиницу, кириллицу, дефис и пробел")
+    setIsValid(emailValidity && nameValidity);
+  }, [profileState.email, profileState.name])
 
-  }, []);
 
-  const handleChangeName = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setProfileName({...profileName, [name]: value});
-    console.log(profileName)
-  };
+  function typeError(data) {
+    setCurrentError(data)
+  }
 
-  const handleChangeEmail = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    setProfileEmail({...profileEmail, [name]: value});
-    console.log(profileEmail)
-  };
+  function handleChange(e) {
+    const {name, value} = e.target;
+    setProfileState(prevState => ({...prevState, [name]: value}));
+  }
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   onProfile(registerState , typeError)
+  // }
 
   function handlerSignOut() {
     onSignOut()
@@ -69,27 +59,29 @@ function Profile({onSignOut}) {
         <form action="#"
               className="profile__form"
               name='profile' noValidate>
-          <h2 className='profile__title'>Привет, Сергей!</h2>
+          <h2 className='profile__title'>{`Привет, ${currentUser.data.name}!`}</h2>
           <label className="profile__label">Имя
             <input type="text"
                    className="profile__input"
-                   onChange={handleChangeName}
-                   value={profileName.name}
+                   onChange={handleChange}
+                   value={profileState.name}
                    name="name"
                    placeholder="введите имя"
                    minLength="2"
                    maxLength="40" required/>
           </label>
+          <p className="input__error">{errorMessageName}</p>
           <label className="profile__label">E-mail
             <input type="text"
                    className="profile__input"
-                   onChange={handleChangeEmail}
-                   value={profileEmail.email}
+                   onChange={handleChange}
+                   value={profileState.email}
                    name="email"
                    placeholder="введите e-mail"
                    minLength="2"
                    maxLength="200" required/>
           </label>
+          <p className="input__error">{errorMessageEmail}</p>
           <button type="submit"
                   aria-label="submit"
                   disabled={true}

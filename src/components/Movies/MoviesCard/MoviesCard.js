@@ -53,9 +53,11 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
 
   return (
     <li className="element">
+      <a href={card.trailerLink} target="_blank" rel="noopener noreferrer">
       <img src={`${BEAT_FILMS_IMAGE_URL}${card.image.url}`}
            alt={card.nameRU}
            className="image"/>
+      </a>
       <div className="description">
         <div className="content">
           <p className="content__text">{card.nameRU}</p>

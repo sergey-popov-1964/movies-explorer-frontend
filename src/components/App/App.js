@@ -87,7 +87,7 @@ function App() {
       });
   }
 
-  function onLogin(data) {
+  function onLogin(data, typeError) {
     mainApi.authorization(data)
       .then((res) => {
         localStorage.setItem('token', res.token);
@@ -96,6 +96,7 @@ function App() {
         setIsReady(true);
       })
       .catch((error) => {
+        typeError(error)
         console.log("Что-то пошло не так", error)
       });
   }
