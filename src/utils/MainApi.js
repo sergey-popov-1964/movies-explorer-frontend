@@ -3,6 +3,12 @@ class	MainApi {
     this._baseUrl = baseUrl;
   }
 
+  _currentToken = '';
+
+  set currentToken(value) {
+    this._currentToken = value;
+  }
+
   handleResponse = (res) => {
     if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
@@ -41,6 +47,19 @@ class	MainApi {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${data}`
       },
+    })
+      .then(this.handleResponse);
+  }
+
+  setUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._currentToken}`
+      },
+      body: JSON.stringify(data)
     })
       .then(this.handleResponse);
   }

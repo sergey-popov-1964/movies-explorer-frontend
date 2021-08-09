@@ -92,7 +92,6 @@ function Register({onRegister}) {
                   aria-label="submit"
                   className={isValid ? "register__submit" : "register__submit register__submit_disabled"}
                   disabled={!isValid}
-
                   name="form_submit">
             Зарегистрироваться
           </button>

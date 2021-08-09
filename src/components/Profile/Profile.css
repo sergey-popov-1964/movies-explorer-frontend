@@ -91,6 +91,11 @@
   transition: all ease .5s;
 }
 
+.profile__submit_disabled {
+  color: #646768;
+  cursor: none;
+}
+
 .profile__exit {
   margin: 16px auto 0;
   width: 150px;

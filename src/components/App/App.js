@@ -18,7 +18,10 @@ import Preloader from "../Preloader/Preloader";
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+  });
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [beatFilms, setBeatFilms] = useState([]);
@@ -26,7 +29,7 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       moviesApi.getBeatFilms()
         .then(data => {
           setBeatFilms(data)
@@ -47,8 +50,11 @@ function App() {
   function onMain(data) {
     mainApi.checkToken(data)
       .then(res => {
-        setCurrentUser(res);
+        const name = res.data.name
+        const email = res.data.email
+        setCurrentUser({name, email});
         moviesApi.currentToken = data;
+        mainApi.currentToken = data;
         onGetSaveFilms();
         setLoggedIn(true);
         setIsReady(true);
@@ -63,11 +69,10 @@ function App() {
     if (!localStorage.getItem('saveFilms')) {
       moviesApi.getSaveFilms()
         .then(data => {
-          if(data.data.length !== 0)
-      {
-        localStorage.setItem('saveFilms', JSON.stringify(data.data));
-        setSaveFilms(data.data)
-      } else {
+          if (data.data.length !== 0) {
+            localStorage.setItem('saveFilms', JSON.stringify(data.data));
+            setSaveFilms(data.data)
+          } else {
             localStorage.setItem('saveFilms', JSON.stringify(saveFilms));
           }
         })
@@ -79,7 +84,7 @@ function App() {
     mainApi.registration(data)
       .then(() => {
         setLoggedIn(true);
-        history.push('/signin');
+        onLogin(data, typeError)
       })
       .catch((error) => {
         typeError(error)
@@ -92,8 +97,20 @@ function App() {
       .then((res) => {
         localStorage.setItem('token', res.token);
         moviesApi.currentToken = res.token;
+        mainApi.currentToken = res.token;
         onMain(res.token)
         setIsReady(true);
+      })
+      .catch((error) => {
+        typeError(error)
+        console.log("Что-то пошло не так", error)
+      });
+  }
+
+  function handleUpdateUser(data, typeError) {
+    mainApi.setUserInfo(data)
+      .then(response => {
+        setCurrentUser(response.data);
       })
       .catch((error) => {
         typeError(error)
@@ -105,9 +122,10 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('saveFilms');
     localStorage.removeItem('token');
-    localStorage.removeItem('beatFilms');
+    // localStorage.removeItem('beatFilms');
     setIsReady(true);
     moviesApi.currentToken = '';
+    mainApi.currentToken = '';
     history.push('/');
   }
 
@@ -139,6 +157,7 @@ function App() {
               <ProtectedRoute
                 path="/profile"
                 onSignOut={onSignOut}
+                onProfile={handleUpdateUser}
                 isLoggedIn={isLoggedIn}
                 component={Profile}
               />
