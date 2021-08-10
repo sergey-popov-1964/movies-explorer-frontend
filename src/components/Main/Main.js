@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Main.css';
 import '../App/App.css';
 import Promo from "./Promo/Promo";
@@ -9,21 +9,37 @@ import AboutMe from "./AboutMe/AboutMe";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-function Main() {
+function Main({isLoggedIn}) {
+
+  const [isFilms, setIsFilms] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [isAccount, setIsAccount] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setIsFilms(true);
+      setIsLogin(false);
+      setIsAccount(true)
+    } else {
+      setIsFilms(false);
+      setIsLogin(true);
+      setIsAccount(false)
+    }
+  }, [])
 
   return (
     <div className="page">
       <div className="block">
-        <Header isFilms={false}
-                isLogin={true}
-                isAccount={false}
+        <Header isFilms={isFilms}
+                isLogin={isLogin}
+                isAccount={isAccount}
         />
         <Promo/>
         <AboutProject/>
         <Techs/>
         <AboutMe/>
         <Portfolio/>
-        <Footer/>
+        {/*<Footer/>*/}
       </div>
     </div>
   )

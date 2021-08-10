@@ -1,28 +1,46 @@
 import React, {useEffect, useState} from 'react';
 import './SavedMovies.css';
 import Header from "../Header/Header";
+import {CurrentUserContext} from '../../context/CurrentUserContext';
 import FilterCheckbox from "../Movies/FilterCheckbox/FilterCheckbox";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import SaveMoviesCardList from "./SaveMoviesCardList/SaveMoviesCardList";
 import moviesApi from "../../utils/MoviesApi";
 
-// import Preloader from "../Preloader/Preloader";
 
 function SavedMovies() {
+
+  const currentUser = React.useContext(CurrentUserContext);
 
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [saveFilms, setSaveFilms] = useState([]);
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
+  const [currentFilms, setCurrentFilms] = useState([]);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    moviesApi.getSaveFilms()
-      .then(data => {
-        localStorage.setItem('saveFilms', JSON.stringify(data.data));
-        setSaveFilms(data.data)
-      })
-      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+    // if (localStorage.getItem('saveFilms')) {
+    //   console.log(localStorage)
+    //   const temp = JSON.parse(localStorage.getItem('saveFilms'))
+    //   console.log(temp)
+    //   setCurrentFilms(temp);
+    // }
+      moviesApi.getSaveFilms()
+        .then(data => {
+          const allFilms = data.data.filter(item => {
+            return item.owner === currentUser.id
+          });
+          setSaveFilms(allFilms)
+          setIsReady(true)
+        })
+        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+
+
+
+
+
   }, [])
 
   function handleShortFilms(data) {
@@ -48,41 +66,48 @@ function SavedMovies() {
     moviesApi.deleteSaveFilm(cardID)
       .then(data => {
         setSaveFilms(filmsToSave)
-        localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
+        // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }
 
-  return (
-    <div className="page">
-      <div className="block">
-        <Header isFilms={true}
-                isLogin={false}
-                isAccount={true}
-                currentSection={"movies"}
-        />
-        <SearchForm
-          onSubmit={handleSearchFilms}
-          onShowList={handleSetShowList}
-          onSetMessage={handleSetMessage}
-        />
-        <FilterCheckbox
-          onCheck={handleShortFilms}
-        />
-        <SaveMoviesCardList
-          isNextButton={true}
-          isTypeList={'movies'}
-          isShortFilms={isShortFilms}
-          isShowList={isShowList}
-          currentBase={saveFilms}
-          searchFilm={searchFilm}
-          onSetShowList={handleSetShowList}
-          onDelete={handleClickDeleteFilm}
-          message={showMessage}
-        />
+
+  if (!isReady) {
+    return null
+  } else {
+    return (
+      <div className="page">
+        <div className="block">
+          <Header isFilms={true}
+                  isLogin={false}
+                  isAccount={true}
+                  currentSection={"movies"}
+          />
+          <SearchForm
+            onSubmit={handleSearchFilms}
+            onShowList={handleSetShowList}
+            onSetMessage={handleSetMessage}
+          />
+          <FilterCheckbox
+            onCheck={handleShortFilms}
+          />
+          <SaveMoviesCardList
+            isNextButton={true}
+            isTypeList={'movies'}
+            isShortFilms={isShortFilms}
+            isShowList={isShowList}
+            currentBase={saveFilms}
+            searchFilm={searchFilm}
+            currentFilms={currentFilms}
+            user={currentUser.id}
+            onSetShowList={handleSetShowList}
+            onDelete={handleClickDeleteFilm}
+            message={showMessage}
+          />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default SavedMovies;

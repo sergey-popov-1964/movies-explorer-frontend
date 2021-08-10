@@ -7,9 +7,7 @@ import MoviesApi from "../../../utils/MoviesApi"
 
 function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
 
-  const [isFilmSaved, setIsFilmSaved] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
-  const [stateSaved, setStateSaved] = useState(saveFilms)
 
   useEffect(() => {
     let findSave = saveFilms.find(o => o.movieId === card.id);
@@ -17,7 +15,6 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
   }, [])
 
   function handleSaveFilm() {
-    if (!isFilmSaved) {
       const data = {
         country: !card.country ? "Empty" : card.country,
         director: card.director,
@@ -31,17 +28,16 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
         thumbnail: BEAT_FILMS_IMAGE_URL + card.image.formats.thumbnail.url,
         movieId: card.id,
       }
+
       MoviesApi.addSaveFilm(data)
         .then((data) => {
-          setStateSaved(stateSaved.push(data))
           setIsSaved(true)
-          onSaveFilms(stateSaved)
+          onSaveFilms(data)
         })
         .catch((error) => {
           console.log("Что-то пошло не так", error)
         });
     }
-  }
 
   function handleDeleteFilm() {
     setIsSaved(false)

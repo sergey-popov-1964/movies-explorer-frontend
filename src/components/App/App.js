@@ -21,6 +21,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     name: "",
     email: "",
+    id: "",
   });
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -52,10 +53,11 @@ function App() {
       .then(res => {
         const name = res.data.name
         const email = res.data.email
-        setCurrentUser({name, email});
+        const id = res.data._id
+        setCurrentUser({name, email, id});
         moviesApi.currentToken = data;
         mainApi.currentToken = data;
-        onGetSaveFilms();
+        // onGetSaveFilms();
         setLoggedIn(true);
         setIsReady(true);
         history.push('/movies');
@@ -171,7 +173,7 @@ function App() {
               </Route>
 
               <Route exact path="/">
-                <Main/>
+                <Main isLoggedIn={isLoggedIn}/>
               </Route>
 
               <Route path="*">

@@ -62,21 +62,6 @@ function Movies() {
         </div>
       </div>
     )
-//   } else {
-//     return (
-//       <div className="page">
-//         <div className="block">
-//           <Header isFilms={true}
-//                   isLogin={false}
-//                   isAccount={true}
-//                   currentSection={"movies"}
-//           />
-//           <Preloader/>
-//           <Footer/>
-//         </div>
-//       </div>
-//     )
-//   }
 }
 
 export default Movies;
