@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../../App/App.css';
 import './CardListShow.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
@@ -9,9 +9,25 @@ function CardListShow({currentBase, saveFilms, onSaveFilms, onDeleteFilms}) {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [stepIncrementPosition, setStepIncrementPosition] = useState(3);
   const [isShowButton, setIsShowButton] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useLayoutEffect(() => {
+    const updateWidth = () => {
+      setScreenWidth(window.innerWidth)
+      // countPosition()
+    }
+    window.addEventListener("resize", updateWidth)
+    return () => window.removeEventListener("resize", updateWidth) > {}
+  }, [])
 
   useEffect(() => {
-    const position = displayCards()
+    const position = displayCards(screenWidth)
+    currentPosition % position.step === 0 ? setCurrentPosition(currentPosition) : setCurrentPosition(currentPosition-(currentPosition % position.step))
+    setStepIncrementPosition(position.step)
+  }, [screenWidth])
+
+  useEffect(() => {
+    const position = displayCards(screenWidth)
     setCurrentPosition(position.init)
     setStepIncrementPosition(position.step)
     if (currentBase.length <= currentPosition) {

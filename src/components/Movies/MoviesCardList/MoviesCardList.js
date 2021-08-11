@@ -5,7 +5,7 @@ import './MoviesCardList.css';
 import CardListShow from "../CardListShow/CardListShow";
 import moviesApi from "../../../utils/MoviesApi";
 
-function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
+function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onStorage}) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -17,13 +17,11 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
     moviesApi.getSaveFilms()
       .then(data => {
         const ownerFilms = data.data.filter(item => {
-          return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`) && item.owner === currentUser.id
+          return item.owner === currentUser.id
         });
         setSaveFilms(ownerFilms)
       })
       .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-
-
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
     });
@@ -32,6 +30,8 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
     });
     setIsFilterAllFilm(filteredAllFilms)
     setIsFilterShortFilm(filteredShortFilms)
+
+    onStorage(filteredAllFilms)
   }, [searchFilm])
 
   function handleSaveFilms(data) {
@@ -56,6 +56,7 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
         }
       }
     )
+
   }
 
   if (isShowList) {

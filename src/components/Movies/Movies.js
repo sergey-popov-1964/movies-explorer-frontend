@@ -7,7 +7,7 @@ import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
-function Movies() {
+function Movies({onStorage}) {
 
   const beatFilms = React.useContext(BeatFilmContext);
 
@@ -15,8 +15,20 @@ function Movies() {
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
+  const [allFilms, setAllFilms] = useState([]);
+
+  useEffect(() => {
+  const temp = JSON.parse(localStorage.getItem('saveFilms'))
+    console.log(temp)
+    if(temp.length !== 0) {
+      setAllFilms(temp)
+    } else {
+      setAllFilms(beatFilms)
+    }
+  }, [beatFilms])
 
 
+  console.log(beatFilms)
   function handleShortFilms(data) {
     setIsShortFilms(!data)
   }
@@ -54,10 +66,11 @@ function Movies() {
             isTypeList={'movies'}
             isShortFilms={isShortFilms}
             isShowList={isShowList}
-            currentBase={beatFilms}
+            currentBase={allFilms}
             searchFilm={searchFilm}
             onSetShowList={handleSetShowList}
             message={showMessage}
+            onStorage={onStorage}
           />
         </div>
       </div>

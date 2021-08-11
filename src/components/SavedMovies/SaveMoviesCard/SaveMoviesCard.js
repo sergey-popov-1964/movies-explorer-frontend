@@ -5,7 +5,7 @@ import closeButton from "../../../images/close-button.svg";
 function SaveMoviesCard({card, onDelete}) {
 
   function handleDeleteFilm() {
-    onDelete(card._id)
+    onDelete(card)
   }
 
   const lengthHour = (card.duration - card.duration % 60) / 60
@@ -14,9 +14,9 @@ function SaveMoviesCard({card, onDelete}) {
   return (
     <li className="element">
       <a href={card.trailer} target="_blank" rel="noopener noreferrer">
-      <img src={card.image}
-           alt={card.nameRU}
-           className="image"/>
+        <img src={card.image}
+             alt={card.nameRU}
+             className="image"/>
       </a>
       <div className="description">
         <div className="content">

@@ -6,18 +6,6 @@ import SaveMoviesCard from "../SaveMoviesCard/SaveMoviesCard";
 function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onDelete}) {
 
   const [filterFilm, setFilterFilm] = useState([]);
-  const [isShow, setIsShow] = useState(isShowList);
-  const [currentFilms, setCurrentFilms] = useState(isShowList);
-  const [filterCurrentFilms, setFilterCurrentFilms] = useState(isShowList);
-
-  useEffect(() => {
-    if (localStorage.getItem('saveFilms')) {
-      const temp = JSON.parse(localStorage.getItem('saveFilms'))
-      setCurrentFilms(temp);
-      setFilterCurrentFilms(temp);
-    }
-    setIsShow(true)
-  }, [])
 
   useEffect(() => {
     const filteredAllFilms = currentBase.filter(item => {
@@ -33,15 +21,7 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, 
     setFilterFilm(isShortFilms ? filteredShortFilms : filteredAllFilms)
   }, [searchFilm])
 
-
   useEffect(() => {
-    if(isShow){
-      const filteredShortFilms = currentFilms.filter(item => {
-        return item.duration <= 40
-      });
-      setFilterCurrentFilms(isShortFilms ? filteredShortFilms : currentFilms)
-    }
-    if(isShowList){
       const filteredAllFilms = currentBase.filter(item => {
         return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
       });
@@ -49,16 +29,14 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, 
         return item.duration <= 40
       });
       setFilterFilm(isShortFilms ? filteredShortFilms : filteredAllFilms)
-    }
-
   }, [isShortFilms])
 
-  function handleClickDelete(cardID) {
+  function handleClickDelete(card) {
     const filmsToSave = filterFilm.filter(item => {
-      return item._id !== cardID
+      return item._id !== card._id
     });
     setFilterFilm(filmsToSave)
-    onDelete(cardID)
+    onDelete(card)
   }
 
   if (isShowList) {
@@ -78,23 +56,6 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, 
         </section>
       </div>
     )
-  } else if (isShow) {
-    return (
-      <div className="block movies__list">
-        <section className="elements">
-          <ul className="elements__list">
-            {
-              filterCurrentFilms.map((item) => (
-                <SaveMoviesCard card={item}
-                                onDelete={handleClickDelete}
-                                key={item._id}
-                />
-              ))
-            }
-          </ul>
-        </section>
-      </div>
-    )
   } else  {
     return (
       <p className="movies__message">Ничего не найдено. Введите данные в строку поиска</p>
@@ -103,3 +64,4 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, 
 }
 
 export default SaveMoviesCardList;
+

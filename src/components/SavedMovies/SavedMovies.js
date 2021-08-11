@@ -7,40 +7,26 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import SaveMoviesCardList from "./SaveMoviesCardList/SaveMoviesCardList";
 import moviesApi from "../../utils/MoviesApi";
 
-
 function SavedMovies() {
 
   const currentUser = React.useContext(CurrentUserContext);
-
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [saveFilms, setSaveFilms] = useState([]);
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
-  const [currentFilms, setCurrentFilms] = useState([]);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // if (localStorage.getItem('saveFilms')) {
-    //   console.log(localStorage)
-    //   const temp = JSON.parse(localStorage.getItem('saveFilms'))
-    //   console.log(temp)
-    //   setCurrentFilms(temp);
-    // }
-      moviesApi.getSaveFilms()
-        .then(data => {
-          const allFilms = data.data.filter(item => {
-            return item.owner === currentUser.id
-          });
+    moviesApi.getSaveFilms()
+      .then(data => {
+        const allFilms = data.data.filter(item => {
+          return item.owner === currentUser.id
+        });
           setSaveFilms(allFilms)
-          setIsReady(true)
-        })
-        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-
-
-
-
-
+        setIsReady(true)
+      })
+      .catch(() => console.log(`Ошибка загрузки данных с сервера`));
   }, [])
 
   function handleShortFilms(data) {
@@ -59,18 +45,16 @@ function SavedMovies() {
     setShowMessage(data)
   }
 
-  function handleClickDeleteFilm(cardID) {
+  function handleClickDeleteFilm(card) {
     const filmsToSave = saveFilms.filter(item => {
-      return item._id !== cardID
+      return item._id !== card._id
     });
-    moviesApi.deleteSaveFilm(cardID)
+    moviesApi.deleteSaveFilm(card._id)
       .then(data => {
         setSaveFilms(filmsToSave)
-        // localStorage.setItem('saveFilms', JSON.stringify(filmsToSave));
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }
-
 
   if (!isReady) {
     return null
@@ -98,11 +82,9 @@ function SavedMovies() {
             isShowList={isShowList}
             currentBase={saveFilms}
             searchFilm={searchFilm}
-            currentFilms={currentFilms}
             user={currentUser.id}
             onSetShowList={handleSetShowList}
             onDelete={handleClickDeleteFilm}
-            message={showMessage}
           />
         </div>
       </div>

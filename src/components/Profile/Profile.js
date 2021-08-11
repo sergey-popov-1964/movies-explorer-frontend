@@ -14,6 +14,7 @@ function Profile({onSignOut, onProfile}) {
   const [isValid, setIsValid] = useState(false);
   const [errorMessageEmail, setErrorMessageEmail] = useState("")
   const [errorMessageName, setErrorMessageName] = useState("")
+  const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
     if (currentUser.name !== undefined) {
@@ -34,6 +35,7 @@ function Profile({onSignOut, onProfile}) {
   }, [email, name])
 
   function typeError(data) {
+    setIsEdit(false)
     setCurrentError(data)
   }
 
@@ -47,6 +49,7 @@ function Profile({onSignOut, onProfile}) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsEdit(true)
     onProfile({name, email}, typeError)
   }
 
@@ -89,7 +92,8 @@ function Profile({onSignOut, onProfile}) {
                    maxLength="200" required/>
           </label>
           <p className="input__error">{errorMessageEmail}</p>
-          <p className="register__error">{currentError}</p>
+          <p className="profile__error">{currentError}</p>
+          <p className={isEdit ? "profile__edit" : "profile__edit profile__edit_nonactive"}>Профиль успешно изменен</p>
           <button type="submit"
                   aria-label="submit"
                   className={isValid ? "profile__submit" : "profile__submit profile__submit_disabled"}

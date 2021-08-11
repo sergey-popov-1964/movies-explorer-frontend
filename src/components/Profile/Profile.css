@@ -29,6 +29,19 @@
   color: #EE3465;
 }
 
+.profile__edit {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 27px;
+  color: #2abf10;
+}
+.profile__edit_nonactive {
+  display: none;
+}
+
 .profile__form {
   font-family: 'Inter', 'Arial', sans-serif;
   max-width: 410px;

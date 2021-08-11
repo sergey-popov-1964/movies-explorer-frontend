@@ -57,7 +57,6 @@ function App() {
         setCurrentUser({name, email, id});
         moviesApi.currentToken = data;
         mainApi.currentToken = data;
-        // onGetSaveFilms();
         setLoggedIn(true);
         setIsReady(true);
         history.push('/movies');
@@ -67,19 +66,9 @@ function App() {
       });
   }
 
-  function onGetSaveFilms() {
-    if (!localStorage.getItem('saveFilms')) {
-      moviesApi.getSaveFilms()
-        .then(data => {
-          if (data.data.length !== 0) {
-            localStorage.setItem('saveFilms', JSON.stringify(data.data));
-            setSaveFilms(data.data)
-          } else {
-            localStorage.setItem('saveFilms', JSON.stringify(saveFilms));
-          }
-        })
-        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
-    }
+  function setStorage(data) {
+    localStorage.setItem('saveFilms', JSON.stringify(data));
+    console.log(localStorage)
   }
 
   function onRegister(data, typeError) {
@@ -98,6 +87,7 @@ function App() {
     mainApi.authorization(data)
       .then((res) => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('saveFilms', []);
         moviesApi.currentToken = res.token;
         mainApi.currentToken = res.token;
         onMain(res.token)
@@ -124,7 +114,6 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('saveFilms');
     localStorage.removeItem('token');
-    // localStorage.removeItem('beatFilms');
     setIsReady(true);
     moviesApi.currentToken = '';
     mainApi.currentToken = '';
@@ -147,6 +136,7 @@ function App() {
               <ProtectedRoute
                 path="/movies"
                 isLoggedIn={isLoggedIn}
+                onStorage={setStorage}
                 component={Movies}
               />
 

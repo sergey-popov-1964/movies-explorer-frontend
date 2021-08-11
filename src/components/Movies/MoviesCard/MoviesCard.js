@@ -16,16 +16,16 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
 
   function handleSaveFilm() {
       const data = {
-        country: !card.country ? "Empty" : card.country,
-        director: card.director,
-        duration: card.duration,
-        year: card.year,
-        description: card.description,
+        country: !card.country ? "Без указания страны" : card.country,
+        director: !card.director ? "Нет данных о режиссере" : card.director,
+        duration: !card.duration ? 0 : card.duration,
+        year: !card.year ? "Нет данных о годе выхода" : card.year,
+        description: !card.description ? "Нет описания" : card.description,
         image: BEAT_FILMS_IMAGE_URL + card.image.url,
-        trailer: card.trailerLink,
+        trailer: !card.trailerLink ? "https://vimeo.com/129794961" : card.trailerLink,
         nameRU: card.nameRU,
-        nameEN: card.nameEN === "" ? "Empty" : card.nameEN,
-        thumbnail: BEAT_FILMS_IMAGE_URL + card.image.formats.thumbnail.url,
+        nameEN: !card.nameEN ? "Empty" : card.nameEN,
+        thumbnail:  !card.image.formats.thumbnail.url ? "https://www.youtube.com/watch?v=ZqU9hxssIZs" : BEAT_FILMS_IMAGE_URL + card.image.formats.thumbnail.url,
         movieId: card.id,
       }
 
