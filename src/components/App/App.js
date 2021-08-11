@@ -68,7 +68,6 @@ function App() {
 
   function setStorage(data) {
     localStorage.setItem('saveFilms', JSON.stringify(data));
-    console.log(localStorage)
   }
 
   function onRegister(data, typeError) {

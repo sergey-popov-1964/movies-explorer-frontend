@@ -19,7 +19,6 @@ function Movies({onStorage}) {
 
   useEffect(() => {
   const temp = JSON.parse(localStorage.getItem('saveFilms'))
-    console.log(temp)
     if(temp.length !== 0) {
       setAllFilms(temp)
     } else {
@@ -27,8 +26,6 @@ function Movies({onStorage}) {
     }
   }, [beatFilms])
 
-
-  console.log(beatFilms)
   function handleShortFilms(data) {
     setIsShortFilms(!data)
   }
