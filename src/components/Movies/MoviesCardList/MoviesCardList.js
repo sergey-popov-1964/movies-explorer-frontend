@@ -5,12 +5,9 @@ import './MoviesCardList.css';
 import CardListShow from "../CardListShow/CardListShow";
 import moviesApi from "../../../utils/MoviesApi";
 
-function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onStorage}) {
+function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
 
   const currentUser = React.useContext(CurrentUserContext);
-
-  const [filterAllFilm, setIsFilterAllFilm] = useState([]);
-  const [filterShortFilm, setIsFilterShortFilm] = useState([]);
   const [saveFilms, setSaveFilms] = useState([]);
 
   useEffect(() => {
@@ -25,13 +22,10 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onSt
     const filteredAllFilms = currentBase.filter(item => {
       return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`)
     });
-    const filteredShortFilms = currentBase.filter(item => {
-      return item.nameRU.toLowerCase().includes(`${searchFilm.toLowerCase()}`) && item.duration <= 40
-    });
-    setIsFilterAllFilm(filteredAllFilms)
-    setIsFilterShortFilm(filteredShortFilms)
+    if (isShowList) {
+      localStorage.setItem('saveFilms', JSON.stringify(filteredAllFilms));
+    }
 
-    onStorage(filteredAllFilms)
   }, [searchFilm])
 
   function handleSaveFilms(data) {
@@ -56,13 +50,16 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, onSt
         }
       }
     )
-
   }
 
-  if (isShowList) {
+  if (JSON.parse(localStorage.getItem('saveFilms'))) {
+    const filteredAllFilms = JSON.parse(localStorage.getItem('saveFilms'));
+    const filteredShortFilms = filteredAllFilms.filter(item => {
+      return item.duration <= 40
+    });
     return (
       <CardListShow
-        currentBase={isShortFilms ? filterShortFilm : filterAllFilm}
+        currentBase={isShortFilms ? filteredShortFilms : filteredAllFilms}
         saveFilms={saveFilms}
         onSaveFilms={handleSaveFilms}
         onDeleteFilms={handleDeleteSaveFilms}

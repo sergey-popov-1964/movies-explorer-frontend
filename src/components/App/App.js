@@ -66,9 +66,9 @@ function App() {
       });
   }
 
-  function setStorage(data) {
-    localStorage.setItem('saveFilms', JSON.stringify(data));
-  }
+  // function setStorage(data) {
+  //   localStorage.setItem('saveFilms', JSON.stringify(data));
+  // }
 
   function onRegister(data, typeError) {
     mainApi.registration(data)
@@ -135,7 +135,6 @@ function App() {
               <ProtectedRoute
                 path="/movies"
                 isLoggedIn={isLoggedIn}
-                onStorage={setStorage}
                 component={Movies}
               />
 

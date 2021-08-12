@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './Movies.css';
 import '../App/App.css';
@@ -7,7 +7,7 @@ import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
-function Movies({onStorage}) {
+function Movies() {
 
   const beatFilms = React.useContext(BeatFilmContext);
 
@@ -15,16 +15,6 @@ function Movies({onStorage}) {
   const [searchFilm, setSearchFilm] = useState('');
   const [isShowList, setIsShowList] = useState(false);
   const [showMessage, setShowMessage] = useState('Введите данные в строку поиска');
-  const [allFilms, setAllFilms] = useState([]);
-
-  useEffect(() => {
-  const temp = JSON.parse(localStorage.getItem('saveFilms'))
-    if(temp.length !== 0) {
-      setAllFilms(temp)
-    } else {
-      setAllFilms(beatFilms)
-    }
-  }, [beatFilms])
 
   function handleShortFilms(data) {
     setIsShortFilms(!data)
@@ -42,36 +32,35 @@ function Movies({onStorage}) {
     setShowMessage(data)
   }
 
-    return (
-      <div className="page">
-        <div className="block">
-          <Header isFilms={true}
-                  isLogin={false}
-                  isAccount={true}
-                  currentSection={"movies"}
-          />
-          <SearchForm
-            onSubmit={handleSearchFilms}
-            onShowList={handleSetShowList}
-            onSetMessage={handleSetMessage}
-          />
-          <FilterCheckbox
-            onCheck={handleShortFilms}
-          />
-          <MoviesCardList
-            isNextButton={true}
-            isTypeList={'movies'}
-            isShortFilms={isShortFilms}
-            isShowList={isShowList}
-            currentBase={allFilms}
-            searchFilm={searchFilm}
-            onSetShowList={handleSetShowList}
-            message={showMessage}
-            onStorage={onStorage}
-          />
-        </div>
+  return (
+    <div className="page">
+      <div className="block">
+        <Header isFilms={true}
+                isLogin={false}
+                isAccount={true}
+                currentSection={"movies"}
+        />
+        <SearchForm
+          onSubmit={handleSearchFilms}
+          onShowList={handleSetShowList}
+          onSetMessage={handleSetMessage}
+        />
+        <FilterCheckbox
+          onCheck={handleShortFilms}
+        />
+        <MoviesCardList
+          isNextButton={true}
+          isTypeList={'movies'}
+          isShortFilms={isShortFilms}
+          isShowList={isShowList}
+          currentBase={beatFilms}
+          searchFilm={searchFilm}
+          onSetShowList={handleSetShowList}
+          message={showMessage}
+        />
       </div>
-    )
+    </div>
+  )
 }
 
 export default Movies;

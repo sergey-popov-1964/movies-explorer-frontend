@@ -12,7 +12,7 @@ function MoviesCard({card, saveFilms, onSaveFilms, onDeleteFilms}) {
   useEffect(() => {
     let findSave = saveFilms.find(o => o.movieId === card.id);
     findSave ? setIsSaved(true) : setIsSaved(false)
-  }, [])
+  }, [saveFilms])
 
   function handleSaveFilm() {
       const data = {

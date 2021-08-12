@@ -14,7 +14,6 @@ function CardListShow({currentBase, saveFilms, onSaveFilms, onDeleteFilms}) {
   useLayoutEffect(() => {
     const updateWidth = () => {
       setScreenWidth(window.innerWidth)
-      // countPosition()
     }
     window.addEventListener("resize", updateWidth)
     return () => window.removeEventListener("resize", updateWidth) > {}

@@ -15,9 +15,9 @@ function SaveMoviesCardList({currentBase, isShortFilms, searchFilm, isShowList, 
       return (item.duration <= 40)
     })
 
-    if(isShowList) {
-      localStorage.setItem('saveFilms', JSON.stringify(filteredAllFilms));
-    }
+    // if(isShowList) {
+    //   localStorage.setItem('saveFilms', JSON.stringify(filteredAllFilms));
+    // }
     setFilterFilm(isShortFilms ? filteredShortFilms : filteredAllFilms)
   }, [searchFilm])
 
