@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './Movies.css';
 import '../App/App.css';

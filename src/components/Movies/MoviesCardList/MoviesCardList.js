@@ -52,7 +52,8 @@ function MoviesCardList({currentBase, isShortFilms, searchFilm, isShowList}) {
     )
   }
 
-  if (JSON.parse(localStorage.getItem('saveFilms'))) {
+  if (localStorage.getItem('saveFilms')) {
+
     const filteredAllFilms = JSON.parse(localStorage.getItem('saveFilms'));
     const filteredShortFilms = filteredAllFilms.filter(item => {
       return item.duration <= 40
