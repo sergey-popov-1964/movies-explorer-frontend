@@ -25,4 +25,8 @@
 Сайт опубликован в сети Интернет по адресу
 https://sergeypopov.nomoredomains.rocks
 
+API расположены по адресу
+https://api.sergeypopov.nomoredomains.rocks
+
+
 

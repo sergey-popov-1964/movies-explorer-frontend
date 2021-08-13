@@ -17,11 +17,11 @@
 .movies__next_nonactive {
   display: none;
 }
-/*.movies__next {*/
-/*  display: block;*/
-/*  width: 100%;*/
-/*  margin: 60px auto 80px;*/
-/*}*/
+.movies__next {
+  display: block;
+  width: 100%;
+  margin: 60px auto 80px;
+}
 
 .movies__button {
   margin: 0 auto;
@@ -38,18 +38,6 @@
   background-color: #2F2F2F;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.movies__message{
-  margin: 0 auto;
-  padding: 0;
-  font-weight: 500;
-  font-size: 18px;
-  display: block;
-}
-
-.movies__message_nonactive{
-  display: none;
 }
 
 @media screen and (max-width: 1279px) {

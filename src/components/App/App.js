@@ -1,5 +1,9 @@
-import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Route, Switch, useHistory} from 'react-router-dom';
+import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
+import {CurrentUserContext} from '../../context/CurrentUserContext';
+import {BeatFilmContext} from '../../context/BeatFilmContext';
 import './App.css';
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -8,45 +12,171 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Notfound from "../Notfound/Notfound";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Footer from "../Footer/Footer";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
 
-  return (
-    <div className="root">
-      <Switch>
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+    id: "",
+  });
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [beatFilms, setBeatFilms] = useState([]);
+  const [saveFilms, setSaveFilms] = useState([]);
+  const history = useHistory();
 
-        <Route path="/signin">
-          <Login/>
-        </Route>
+  useEffect(() => {
+    if (isLoggedIn) {
+      moviesApi.getBeatFilms()
+        .then(data => {
+          setBeatFilms(data)
+        })
+        .catch(() => console.log(`Ошибка загрузки данных с сервера`));
+    }
+  }, [isLoggedIn])
 
-        <Route path="/signup">
-          <Register/>
-        </Route>
+  useEffect(() => {
+    const jwt = localStorage.getItem('token');
+    if (!jwt) {
+      setIsReady(true);
+      return;
+    }
+    onMain(jwt);
+  }, [history])
 
-        <Route path="/movies">
-          <Movies/>
-        </Route>
+  function onMain(data) {
+    mainApi.checkToken(data)
+      .then(res => {
+        const name = res.data.name
+        const email = res.data.email
+        const id = res.data._id
+        setCurrentUser({name, email, id});
+        moviesApi.currentToken = data;
+        mainApi.currentToken = data;
+        setLoggedIn(true);
+        setIsReady(true);
+        history.push('/movies');
+      })
+      .catch((error) => {
+        console.log("Что-то пошло не так", error);
+      });
+  }
 
-        <Route path="/saved-movies">
-          <SavedMovies/>
-        </Route>
+  // function setStorage(data) {
+  //   localStorage.setItem('saveFilms', JSON.stringify(data));
+  // }
 
-        <Route path="/profile">
-          <Profile/>
-        </Route>
+  function onRegister(data, typeError) {
+    mainApi.registration(data)
+      .then(() => {
+        setLoggedIn(true);
+        onLogin(data, typeError)
+      })
+      .catch((error) => {
+        typeError(error)
+        console.log("Что-то пошло не так", error)
+      });
+  }
 
-        <Route exact path="/">
-          <Main/>
-        </Route>
+  function onLogin(data, typeError) {
+    mainApi.authorization(data)
+      .then((res) => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('saveFilms', []);
+        moviesApi.currentToken = res.token;
+        mainApi.currentToken = res.token;
+        onMain(res.token)
+        setIsReady(true);
+      })
+      .catch((error) => {
+        typeError(error)
+        console.log("Что-то пошло не так", error)
+      });
+  }
 
-        <Route path="*">
-          <Notfound/>
-        </Route>
+  function handleUpdateUser(data, typeError) {
+    mainApi.setUserInfo(data)
+      .then(response => {
+        setCurrentUser(response.data);
+      })
+      .catch((error) => {
+        typeError(error)
+        console.log("Что-то пошло не так", error)
+      });
+  }
 
-      </Switch>
+  function onSignOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('saveFilms');
+    localStorage.removeItem('token');
+    setIsReady(true);
+    moviesApi.currentToken = '';
+    mainApi.currentToken = '';
+    history.push('/');
+  }
 
-    </div>
-  )
+  if (!isReady) {
+    return (
+      <div className="root">
+        <Preloader/>
+      </div>
+    )
+  } else {
+    return (
+      <BeatFilmContext.Provider value={beatFilms}>
+        <CurrentUserContext.Provider value={currentUser}>
+          <div className="root">
+            <Switch>
+
+              <ProtectedRoute
+                path="/movies"
+                isLoggedIn={isLoggedIn}
+                component={Movies}
+              />
+
+              <ProtectedRoute
+                path="/saved-movies"
+                isLoggedIn={isLoggedIn}
+                component={SavedMovies}
+              />
+
+              <ProtectedRoute
+                path="/profile"
+                onSignOut={onSignOut}
+                onProfile={handleUpdateUser}
+                isLoggedIn={isLoggedIn}
+                component={Profile}
+              />
+
+              <Route path="/signin">
+                <Login onLogin={onLogin}/>
+              </Route>
+
+              <Route path="/signup">
+                <Register onRegister={onRegister}/>
+              </Route>
+
+              <Route exact path="/">
+                <Main isLoggedIn={isLoggedIn}/>
+              </Route>
+
+              <Route path="*">
+                <Notfound/>
+              </Route>
+
+            </Switch>
+
+            <Footer/>
+          </div>
+
+        </CurrentUserContext.Provider>
+      </BeatFilmContext.Provider>
+    )
+  }
 }
 
 export default App;

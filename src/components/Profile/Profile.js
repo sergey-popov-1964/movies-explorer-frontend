@@ -1,9 +1,62 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {CurrentUserContext} from '../../context/CurrentUserContext';
 import './Profile.css';
 import '../App/App.css';
 import Header from "../Header/Header";
 
-function Profile() {
+function Profile({onSignOut, onProfile}) {
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentError, setCurrentError] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const [errorMessageEmail, setErrorMessageEmail] = useState("")
+  const [errorMessageName, setErrorMessageName] = useState("")
+  const [isEdit, setIsEdit] = useState(false)
+
+  useEffect(() => {
+    if (currentUser.name !== undefined) {
+      setName(currentUser.name);
+    }
+    if (currentUser.email !== undefined) {
+      setEmail(currentUser.email);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    const emailValidity = email.match(/^[\w-\.\d*]+@[\w\d]+(\.\w{2,4})$/);
+    const nameValidity = name.match(/^[a-zA-ZА-Яа-я0-9- ]{3,16}$/);
+
+    emailValidity ? setErrorMessageEmail("") : setErrorMessageEmail("Поле должно содержать e-mail")
+    nameValidity ? setErrorMessageName("") : setErrorMessageName("Поле длиной от з до 16 символов может содержать цифру, латиницу, кириллицу, дефис и пробел")
+    setIsValid(emailValidity && nameValidity && (name !== currentUser.name || email !== currentUser.email));
+  }, [email, name])
+
+  function typeError(data) {
+    setIsEdit(false)
+    setCurrentError(data)
+  }
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsEdit(true)
+    onProfile({name, email}, typeError)
+  }
+
+  function handlerSignOut() {
+    onSignOut()
+  }
+
   return (
     <div className="page">
       <div className="block">
@@ -14,34 +67,45 @@ function Profile() {
         />
         <form action="#"
               className="profile__form"
-              name='profile' noValidate>
-          <h2 className='profile__title'>Привет, Сергей!</h2>
+              name='profile' noValidate
+              onSubmit={handleSubmit}>
+          <h2 className='profile__title'>{`Привет, ${currentUser.name}!`}</h2>
           <label className="profile__label">Имя
             <input type="text"
                    className="profile__input"
+                   onChange={handleChangeName}
+                   value={name}
                    name="name"
                    placeholder="введите имя"
                    minLength="2"
                    maxLength="40" required/>
           </label>
+          <p className="input__error">{errorMessageName}</p>
           <label className="profile__label">E-mail
             <input type="text"
                    className="profile__input"
+                   onChange={handleChangeEmail}
+                   value={email}
                    name="email"
                    placeholder="введите e-mail"
                    minLength="2"
                    maxLength="200" required/>
           </label>
+          <p className="input__error">{errorMessageEmail}</p>
+          <p className="profile__error">{currentError}</p>
+          <p className={isEdit ? "profile__edit" : "profile__edit profile__edit_nonactive"}>Профиль успешно изменен</p>
           <button type="submit"
                   aria-label="submit"
-                  className='profile__submit'
+                  className={isValid ? "profile__submit" : "profile__submit profile__submit_disabled"}
+                  disabled={!isValid}
                   name="form_submit">
             Редактировать
           </button>
           <button type="button"
                   aria-label="exit"
                   className='profile__exit'
-                  name="form_exit">
+                  name="form_exit"
+                  onClick={handlerSignOut}>
             Выйти из аккаунта
           </button>
         </form>
